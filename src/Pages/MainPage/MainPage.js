@@ -1,5 +1,6 @@
 import './MainPage.scss'
 import Chevron from '../../Assets/Icons/chevron_right-24px.svg'
+import MonthNav from '../../Components/ MonthNav/MonthNav';
 
 function MainPage() {
 
@@ -18,6 +19,7 @@ function MainPage() {
 
                     </div>
                 </div>
+                <MonthNav/>
             </div>
         </div>
     )
