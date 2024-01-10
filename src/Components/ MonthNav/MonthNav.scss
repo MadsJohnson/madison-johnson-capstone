@@ -1,0 +1,43 @@
+@import '../../Styles/Partials//mixins.scss';
+
+.month-nav {
+    margin-top: 1.4rem;
+
+    @include desktop {
+        margin-top: 1.35rem;
+    }
+
+
+    &__link {
+        text-decoration: none;
+    }
+
+    &__container{
+        background-color: white;
+        border-radius: 0 10px 10px 0;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    
+    }
+
+    &__header {
+        font-size: 1.09rem;
+        color: #528fa4;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        padding: 0.4rem;
+        margin: 0;
+
+        @include desktop {
+            font-size: 0.75rem;
+            padding: 0.45rem;
+        }
+
+        @include desktop {
+            font-size: 0.76rem;
+            padding: 0.4rem;
+        }
+        
+
+
+    }
+}
