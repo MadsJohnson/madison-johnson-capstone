@@ -1,13 +1,16 @@
+import { useParams } from 'react-router-dom';
 import DayEventCalendar from '../DayEventCalendar/DayEventCalendar';
 import './MonthEventCalendar.scss'
 
 function MonthEventCalendar() {
-    return(
-        <div className='event-calendar'>
-            <div>Month - Event Calendar</div>
+
+const {month} = useParams();
+
+    return (
+        <div className="calendar">
+            <h1>{month}</h1>
             <DayEventCalendar/>
         </div>
-        
     )
 }
 
