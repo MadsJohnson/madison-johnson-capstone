@@ -1,16 +1,21 @@
-@mixin mobile {
-  @media (min-width: $mobile-width) {
-    @content;
-  }
-}
+@import 'variables';
+
 @mixin tablet {
-  @media (min-width: $tablet-width) {
-    @content;
-  }
+    @media screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
 }
 
 @mixin desktop {
-  @media (min-width: $desktop-width) {
-    @content;
-  }
+    @media screen and (min-width: $desktop-breakpoint) {
+        @content;
+    }
+
+}
+
+@mixin mobile {
+    @media screen and (min-width: $mobile-breakpoint) {
+        @content;
+    }
+
 }
