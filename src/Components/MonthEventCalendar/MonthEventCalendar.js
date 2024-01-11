@@ -12,26 +12,26 @@ function MonthEventCalendar() {
 
 
     useEffect(() => {
-        // Function to get days in a specific month
+        // Function to get number of days in a specific month
         function daysInMonth(year, month) {
-          const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
-          const daysArray = [];
-    
-          for (let day = 1; day <= lastDayOfMonth; day++) {
-            daysArray.push(day);
-          }
-    
-          return daysArray;
+            const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
+            const daysArray = [];
+
+            for (let day = 1; day <= lastDayOfMonth; day++) {
+                daysArray.push(day);
+            }
+
+            return daysArray;
         }
-    
+
         const currentYear = currentDate.getFullYear();
         const monthIndex = new Date(Date.parse(month + ' 1, ' + currentYear)).getMonth();
         const daysArray = daysInMonth(currentYear, monthIndex);
         setDaysOfMonth(daysArray);
 
         console.log(daysArray)
-    
-      }, [currentDate, month]);
+
+    }, [currentDate, month]);
 
 
 
@@ -44,7 +44,11 @@ function MonthEventCalendar() {
                         {day}
                     </div>
                 ))}
-                <DayEventCalendar />
+                {daysOfMonth.length > 0 &&
+                    daysOfMonth.map((day) => (
+                        <DayEventCalendar key={day} date={day} /* Other props for data, API functions */ />
+                    ))}
+
             </div>
 
         </div>

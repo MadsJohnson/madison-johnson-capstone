@@ -1,7 +1,7 @@
 import './DayEventCalendar.scss'
 import { useState } from 'react';
 
-function DayEventCalendar() {
+const DayEventCalendar =({date})=> {
   const [events, setEvents] = useState(''); 
 
   const handleEventInput = (event) => {
@@ -16,7 +16,7 @@ function DayEventCalendar() {
 
   return (
     <div className="calendar-day">
-      <div className="calendar-day__number">DAY #</div>
+      <div className="calendar-day__number">{date}</div>
       <textarea
         className="calendar-day__user-input"
         placeholder="enter event here..."
