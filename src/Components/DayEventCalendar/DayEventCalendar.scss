@@ -1,0 +1,19 @@
+.calendar-day {
+    &__number {
+        
+    }
+
+    &__user-input {
+            border: none;
+            resize: none; 
+            background: none; 
+            width: calc(100% - 1px); 
+            height: calc(100% - 1px);
+            font-size: inherit; 
+            color: black; 
+            outline: none; 
+            overflow: auto;
+          
+
+    }
+}
