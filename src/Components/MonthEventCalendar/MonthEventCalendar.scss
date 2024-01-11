@@ -2,14 +2,16 @@
 
     &__container {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        /* 7 columns for each day of the week */
-        gap: 5px;
+        grid-template-columns: repeat(7, 1fr)
     }
 
     &__subheader {
         text-align: center;
         font-weight: bold;
+    }
 
+    &__day {
+        border: 1px solid black;
+        margin:0;
     }
 }

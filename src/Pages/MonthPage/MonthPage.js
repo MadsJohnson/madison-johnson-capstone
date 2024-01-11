@@ -5,7 +5,6 @@ function MonthPage() {
 
     return (
         <div className='month-page'>
-            <div>Month Page</div>
             <MonthEventCalendar />
         </div>
 

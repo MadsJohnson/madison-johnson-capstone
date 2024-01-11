@@ -9,10 +9,12 @@ function MonthEventCalendar() {
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const [currentDate, setCurrentDate] = useState(new Date()); // Current month and year
     const [daysOfMonth, setDaysOfMonth] = useState([]);
+    const [startDay, setStartDay] = useState(0);
+
 
 
     useEffect(() => {
-        // Function to get number of days in a specific month
+        // Function to get number of days in a specific month and start day
         function daysInMonth(year, month) {
             const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
             const daysArray = [];
@@ -29,11 +31,18 @@ function MonthEventCalendar() {
         const daysArray = daysInMonth(currentYear, monthIndex);
         setDaysOfMonth(daysArray);
 
-        console.log(daysArray)
+        // Calculate the starting day of the week for the first day of the month
+        const firstDayOfMonth = new Date(currentYear, monthIndex, 1);
+        const startDayIndex = firstDayOfMonth.getDay();
+        setStartDay(startDayIndex);
+
+        // console.log(daysArray)
+        // console.log(startDayIndex)
 
     }, [currentDate, month]);
 
-
+    // Generate empty placeholders for days before the startDay
+    const emptyDays = new Array(startDay).fill(null);
 
     return (
         <div className="calendar">
@@ -44,9 +53,14 @@ function MonthEventCalendar() {
                         {day}
                     </div>
                 ))}
+                {emptyDays.map((_, index) => (
+                    <div key={`empty-${index}`} className="calendar__day"></div>
+                ))}
                 {daysOfMonth.length > 0 &&
                     daysOfMonth.map((day) => (
-                        <DayEventCalendar key={day} date={day} /* Other props for data, API functions */ />
+                        <div className="calendar__day" >
+                            <DayEventCalendar key={day} date={day} />
+                        </div>
                     ))}
 
             </div>
