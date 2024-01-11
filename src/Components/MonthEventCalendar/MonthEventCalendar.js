@@ -4,12 +4,23 @@ import './MonthEventCalendar.scss'
 
 function MonthEventCalendar() {
 
-const {month} = useParams();
+    const { month } = useParams();
+
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
 
     return (
         <div className="calendar">
-            <h1>{month}</h1>
-            <DayEventCalendar/>
+            <h1 className="calendar__header">{month}</h1>
+            <div className="calendar__container">
+                {dayNames.map((day) => (
+                    <div key={day} className="calendar__subheader">
+                        {day}
+                    </div>
+                ))}
+                <DayEventCalendar />
+            </div>
+
         </div>
     )
 }

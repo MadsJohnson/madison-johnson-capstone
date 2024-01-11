@@ -1,0 +1,15 @@
+.calendar {
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        /* 7 columns for each day of the week */
+        gap: 5px;
+    }
+
+    &__subheader {
+        text-align: center;
+        font-weight: bold;
+
+    }
+}
