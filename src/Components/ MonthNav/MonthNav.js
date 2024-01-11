@@ -10,7 +10,7 @@ function MonthNav() {
     return (
         <div className='month-nav'>
             {months.map((month, index) => (
-                <Link key={index} className='month-nav__link'>
+                <Link key={index} className='month-nav__link' to={`/${month.toLowerCase()}`}>
                     <div className='month-nav__container'>
                         <h2 className='month-nav__header'>{month}</h2>
                     </div>

@@ -1,9 +1,14 @@
+import MonthEventCalendar from '../../Components/MonthEventCalendar/MonthEventCalendar';
 import './MonthPage.scss'
 
 function MonthPage() {
 
     return (
-        <div>Month Page</div>
+        <div className='month-page'>
+            <div>Month Page</div>
+            <MonthEventCalendar />
+        </div>
+
     )
 }
 
