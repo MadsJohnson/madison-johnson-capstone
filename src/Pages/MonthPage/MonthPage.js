@@ -2,19 +2,19 @@ import MonthEventCalendar from '../../Components/MonthEventCalendar/MonthEventCa
 import WeekOfMonthNav from '../../Components/WeekOfMonthNav/WeekOfMonthNav';
 import './MonthPage.scss'
 
+
 function MonthPage() {
 
     return (
         <div className='month-page'>
             <div className='month-page__planner'>
                 <div className='month-page__planner--page'>
-                <MonthEventCalendar />
-                
+                  <MonthEventCalendar /
                 </div>
                 <WeekOfMonthNav/>
                 
-            </div>
-          
+            </div>  
+
         </div>
 
     )
