@@ -1,0 +1,30 @@
+@import '../../Styles/Partials/_mixins.scss';
+@import '../../Styles/Partials/_variables.scss';
+
+.month-page {
+
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &__planner {
+        display: flex;
+        width: 95%;
+        height: 75vh;
+        margin-top: 16px;
+        border-radius: 0.2rem;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        background-color: $light-blue-background;
+
+        @include tablet {
+            width: 75%;
+        }
+
+        @include desktop {
+            width: 40%;
+            height: 700px;
+        }
+
+    }
+
+}
