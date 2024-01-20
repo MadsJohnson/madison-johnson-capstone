@@ -20,11 +20,11 @@
     }
 
     &__header {
-        font-size: 1.09rem;
+        font-size: 12px;
         color: #528fa4;
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        padding: 0.4rem;
+        padding: 4px;
         margin: 0;
 
         @include desktop {
