@@ -9,7 +9,7 @@ function MonthPage() {
         <div className='month-page'>
             <div className='month-page__planner'>
                 <div className='month-page__planner--page'>
-                  <MonthEventCalendar /
+                  <MonthEventCalendar />
                 </div>
                 <WeekOfMonthNav/>
                 
