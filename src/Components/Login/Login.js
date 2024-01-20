@@ -5,52 +5,51 @@ import { fetchUserProfile, loginUrl } from '../../utils';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [isSignedUp, setIsSignedUp] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isSignedUp, setIsSignedUp] = useState(false)
     const [isLoginError, setIsLoginError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
-  
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
-      
+
         const username = e.target.username ? e.target.username.value : '';
         const password = e.target.password ? e.target.password.value : '';
-      
+
         if (!username || !password) {
-          setLoading(false);
-          // Handle validation error
-          return;
+            setLoading(false);
+            // Handle validation error
+            return;
         }
-      
+
         try {
-          const response = await axios.post(loginUrl, { username, password });
-          const token = response.data.token;
-      
-          // Fetch user profile using the utility function
-          const profileResponse = await fetchUserProfile(token);
-          const userProfile = profileResponse.data;
-      
-          // Set user profile in sessionStorage
-          sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-      
-          setIsLoggedIn(true);
-          setIsLoginError(false);
-          setErrorMessage("");
-          setLoading(false);
-      
-          // Redirect to MainPage
-          navigate('/');
+            const response = await axios.post(loginUrl, { username, password });
+            const token = response.data.token;
+
+            // Fetch user profile using the utility function
+            const profileResponse = await fetchUserProfile(token);
+            const userProfile = profileResponse.data;
+
+            // Set user profile in sessionStorage
+            sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+            setIsLoggedIn(true);
+            setIsLoginError(false);
+            setErrorMessage("");
+            setLoading(false);
+
+            // Redirect to MainPage
+            navigate('/home');
         } catch (error) {
-          console.error('Login error:', error);
-          setLoading(false);
-          setIsLoginError(true);
-          setErrorMessage(error.response?.data?.error?.message || 'Unknown error occurred');
+            console.error('Login error:', error);
+            setLoading(false);
+            setIsLoginError(true);
+            setErrorMessage(error.response?.data?.error?.message || 'Unknown error occurred');
         }
-      };
-      
-  
+    };
+
 
     const renderSignupButton = () => (
         <button className="btn btn-primary" onClick={() => setIsSignedUp(true)}>

@@ -11,6 +11,8 @@ function MainPage() {
     const userProfile = JSON.parse(sessionStorage.getItem('userProfile')) || {};
     const [isLoading, setIsLoading] = useState(true);
 
+    const userName = userProfile && userProfile.name;
+
     useEffect(() => {
         const token = sessionStorage.getItem('JWTtoken');
     
@@ -40,6 +42,8 @@ function MainPage() {
             isLoading ? (
                 <h1>Loading...</h1>
             ): (
+                <>
+                <h1>{userName}'s Planner</h1>
                 <div className='mainpage__planner'>
                 <div className='mainpage__planner--cover'>
                     <div className='mainpage__planner--page-turn-icon--container'>
@@ -55,6 +59,7 @@ function MainPage() {
                 </div>
                 <MonthNav />
             </div>
+            </>
             )
         }
             
