@@ -1,0 +1,22 @@
+.homepage  {
+
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+
+    &__button {
+        background-color: #dbe1f4;
+        border: none;
+        border-radius: 10px;
+        width: 100px;
+        height: 20px;
+        margin: 20px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    &__link {
+        text-decoration: none;
+        color:#728ac4 ;
+        font-weight: bold;
+    }
+}
