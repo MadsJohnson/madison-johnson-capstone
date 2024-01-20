@@ -41,8 +41,8 @@ function MonthEventCalendar() {
 
     }, [currentDate, month]);
 
-    // Generate empty placeholders for days before the startDay
-    const emptyDays = new Array(startDay).fill(null);
+    // // Generate empty placeholders for days before the startDay
+    // const emptyDays = new Array(startDay).fill(null);
 
     return (
         <div className="calendar">
@@ -53,9 +53,9 @@ function MonthEventCalendar() {
                         {day}
                     </div>
                 ))}
-                {emptyDays.map((_, index) => (
+                {/* {emptyDays.map((_, index) => (
                     <div key={`empty-${index}`} className="calendar__day"></div>
-                ))}
+                ))} */}
                 {daysOfMonth.length > 0 &&
                     daysOfMonth.map((day) => (
                         <div className="calendar__day" >
