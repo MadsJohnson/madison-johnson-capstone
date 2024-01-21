@@ -1,7 +1,7 @@
 @import '../../Styles/Partials//mixins.scss';
 
 .month-nav {
-    margin-top: 1.4rem;
+    margin-top: 17px;
 
     @include desktop {
         margin-top: 1.35rem;
@@ -14,17 +14,17 @@
 
     &__container{
         background-color: white;
-        border-radius: 0 10px 10px 0;
+        border-radius: 0 6px 6px 0;
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     
     }
 
     &__header {
-        font-size: 12px;
+        font-size: 9px;
         color: #528fa4;
         writing-mode: vertical-rl;
         text-orientation: mixed;
-        padding: 4px;
+        padding: 2.5px;
         margin: 0;
 
         @include desktop {

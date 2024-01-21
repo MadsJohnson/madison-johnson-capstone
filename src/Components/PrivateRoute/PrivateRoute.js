@@ -1,12 +1,16 @@
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
-  const isAuthenticated = () => {
-    const token = sessionStorage.getItem('JWTtoken');
-    return !!token;
-  };
+const PrivateRoute = ({ element }) => {
 
-  return isAuthenticated() ? <Route {...rest} element={<Element />} /> : <Navigate to="/login" />;
+  const Element = () => element
+  const isAuthenticated = sessionStorage.getItem("token").length > 0;
+  console.log(isAuthenticated)
+
+  return isAuthenticated ? <Element/> : <Navigate to="/login" />
+
+
+
 };
 
 export default PrivateRoute;
+

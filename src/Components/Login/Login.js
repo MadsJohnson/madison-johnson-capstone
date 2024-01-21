@@ -6,7 +6,7 @@ import { fetchUserProfile, loginUrl } from '../../utils';
 const Login = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isSignedUp, setIsSignedUp] = useState(false)
+    const [IsSignedUp, setIsSignedUp] = useState(false)
     const [isLoginError, setIsLoginError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -27,6 +27,7 @@ const Login = () => {
         try {
             const response = await axios.post(loginUrl, { username, password });
             const token = response.data.token;
+            console.log('login page:', token)
 
             // Fetch user profile using the utility function
             const profileResponse = await fetchUserProfile(token);
@@ -35,13 +36,16 @@ const Login = () => {
             // Set user profile in sessionStorage
             sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
 
+            // Set user profile in sessionStorage
+            sessionStorage.setItem('token', JSON.stringify(token));
+
             setIsLoggedIn(true);
             setIsLoginError(false);
             setErrorMessage("");
             setLoading(false);
 
             // Redirect to MainPage
-            navigate('/home');
+            navigate('/mainpage');
         } catch (error) {
             console.error('Login error:', error);
             setLoading(false);
