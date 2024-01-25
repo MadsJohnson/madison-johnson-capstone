@@ -1,0 +1,40 @@
+@import '../../Styles/Partials/variables';
+@import '../../Styles/Partials/global';
+
+.task-list {
+    color: $dark-blue-fonts;
+    border: 1px solid $dark-blue-fonts;
+    background-color: white;
+    width: 93%;
+    margin: 8px;
+    padding: 0;
+
+    &__title {
+        margin: 0;
+        text-align: center;
+    }
+
+    &__item {
+        width: 100%;
+        padding: 4px;
+
+        &--radial-toggle {
+            border: 1px solid $dark-blue-fonts;
+            margin: 0;
+        }
+
+        &--input {
+            width: 85%;
+            border: none;
+            background: none;
+            color: $dark-blue-fonts;
+            padding-left: 4px;
+            margin-left: 4px;
+        }
+
+        &--input:focus {
+            outline: 1px solid $dark-blue-fonts;
+        }
+    }
+
+}

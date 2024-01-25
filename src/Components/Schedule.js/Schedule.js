@@ -38,6 +38,7 @@ const Schedule = () => {
 
     return (
         <div className='schedule'>
+            <h2 className='schedule__title'>Schedule</h2>
             <table className='schedule__container'>
                 <tbody className='schedule__subcontainer'>
                     {Object.entries(schedule).map(([time, task]) => (

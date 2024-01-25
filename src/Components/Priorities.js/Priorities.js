@@ -1,34 +1,51 @@
-import './Priorities.js'
+// Import necessary modules and styles
+import './Priorities.scss';
 import { useState } from 'react';
 
 const Priorities = () => {
-    const [tasks, setTasks] = useState([
-      { id: 1, text: 'Task 1', completed: false },
-      { id: 2, text: 'Task 2', completed: true },
-      { id: 3, text: 'Task 3', completed: false },
-    ]);
-  
-    const toggleComplete = (taskId) => {
-      setTasks((prevTasks) =>
-        prevTasks.map((task) =>
-          task.id === taskId ? { ...task, completed: !task.completed } : task
-        )
-      );
-    };
-  
-    return (
-      <ul className="task-list">
-        {tasks.map((task) => (
-          <li key={task.id} className="task-item">
-            <div
-              className={`checkbox ${task.completed ? 'checked' : ''}`}
-              onClick={() => toggleComplete(task.id)}
-            ></div>
-            <div className="task-text">{task.text}</div>
-          </li>
-        ))}
-      </ul>
+  const [tasks, setTasks] = useState([
+    { id: 1, text: 'Task 1', completed: false },
+    { id: 2, text: 'Task 2', completed: true },
+    { id: 3, text: 'Task 3', completed: false },
+    { id: 4, text: 'Task 4', completed: false } // Fixing the duplicate id
+  ]);
+
+  const toggleComplete = (taskId) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
     );
   };
-  
-  export default Priorities;
+
+  const handleTextChange = (taskId, newText) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, text: newText } : task
+      )
+    );
+  };
+
+  return (
+    <div className="task-list">
+      <h2 className="task-list__title">Priorities</h2>
+      {tasks.map((task) => (
+        <div key={task.id} className="task-list__item">
+          <input
+            type="radio"
+            className="task-list__item--radial-toggle"
+            onClick={() => toggleComplete(task.id)}
+            checked={task.completed}
+          />
+          <input
+            className="task-list__item--input"
+            value={task.text}
+            onChange={(e) => handleTextChange(task.id, e.target.value)}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Priorities;
