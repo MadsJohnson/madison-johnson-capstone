@@ -3,7 +3,8 @@ import { useParams, Navigate } from 'react-router-dom';
 import Schedule from '../../Components/Schedule/Schedule.js';
 import './DayPage.scss';
 import Priorities from '../../Components/Priorities/Priorities.js';
-import ToDoList from '../../Components/ToDoList/ToDoList.js'
+import ToDoList from '../../Components/ToDoList/ToDoList.js';
+import Notes from '../../Components/Notes/Notes.js'
 
 function DayPage() {
   const { date } = useParams();
@@ -57,6 +58,7 @@ function DayPage() {
                 <Priorities />
                 <Schedule />
                 <ToDoList/>
+                <Notes/>
               </div>
             );
           }

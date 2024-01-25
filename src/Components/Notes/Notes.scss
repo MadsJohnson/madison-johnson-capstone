@@ -1,0 +1,26 @@
+@import '../../Styles/Partials/variables';
+@import '../../Styles/Partials/mixins';
+.notes {
+    color: $dark-blue-fonts;
+    border: 1px solid $dark-blue-fonts;
+    background-color: white;
+    width: 91%;
+    margin: 16px;
+
+    &__title {
+        margin: 0;
+        text-align: center;
+    }
+
+    &__text-input {
+        width: 90%;
+        height: 200px;
+        border: none;
+        margin: 16px;
+    }
+
+    &__text-input:focus {
+        outline: none;
+    }
+
+}

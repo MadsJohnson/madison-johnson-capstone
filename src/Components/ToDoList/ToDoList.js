@@ -1,4 +1,3 @@
-// Import necessary modules and styles
 import './ToDoList.scss';
 import { useState } from 'react';
 
