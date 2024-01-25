@@ -29,7 +29,7 @@ function DayPage() {
 
     let currentDate = new Date(startDate);
     while (currentDate <= endDate) {
-      dates.push(new Date(currentDate)); // Push a new Date object to avoid mutating the currentDate
+      dates.push(new Date(currentDate));
       currentDate.setDate(currentDate.getDate() + 1);
     }
 
@@ -40,7 +40,6 @@ function DayPage() {
   const isValidDate = dates.some(dateObject => formatDateForComparison(dateObject.toISOString()).toISOString() === new Date(date).toISOString());
 
   if (!isValidDate) {
-    // Redirect to home page if the date is not valid
     return <Navigate to="/mainpage" />;
   }
 
@@ -50,15 +49,28 @@ function DayPage() {
         {dates.map((dateObject, index) => {
           const formattedDate = formatDateForComparison(dateObject.toISOString());
 
-          // Check if the current date matches the date from the URL parameters
           if (formattedDate.toISOString() === new Date(date).toISOString()) {
             return (
               <div className='daypage__planner--cover' key={index}>
                 <h1>{formatDateForDisplay(dateObject)}</h1>
-                <Priorities />
-                <Schedule />
-                <ToDoList/>
-                <Notes/>
+                <div className="daypage__content-container">
+                  <div className="daypage__priorities--mobile">
+                    <Priorities />
+                  </div>
+                  <div className="daypage__schedule">
+                    <Schedule />
+                  </div>
+                  <div className="daypage__subcontainer">
+                    <div className="daypage__priorities--tablet">
+                      <Priorities />
+                    </div>
+                    <ToDoList />
+                    <Notes />
+                  </div>
+
+
+                </div>
+
               </div>
             );
           }

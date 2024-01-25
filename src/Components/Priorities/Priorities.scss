@@ -1,5 +1,6 @@
 @import '../../Styles/Partials/variables';
 @import '../../Styles/Partials/global';
+@import '../../Styles/Partials/mixins';
 
 .task-list {
     color: $dark-blue-fonts;
@@ -9,13 +10,17 @@
     margin: 16px;
     padding: 0;
 
+    @include  tablet {
+        height: 130px;
+    }
+
     &__title {
         margin: 0;
         text-align: center;
     }
 
     &__item {
-        width: 100%;
+        width: 95%;
         padding: 0 8px 8px 8px;
         display: flex;
 
@@ -25,7 +30,7 @@
         }
 
         &--input {
-            width: 85%;
+            width: 100%;
             border: none;
             background: none;
             color: $dark-blue-fonts;
