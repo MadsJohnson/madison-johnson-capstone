@@ -19,3 +19,41 @@
     }
 
 }
+
+@mixin radialToggleButtonStyles($size: 20px, $uncheckedSize: 12px, $color: $dark-blue-fonts) {
+    appearance: none;
+    position: relative;
+    border: 1px solid $dark-blue-fonts;
+    border-radius: 50%;
+    height: 20px;
+    width: 24px;
+    margin: 0;
+    box-sizing: border-box;
+
+    &:checked::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $dark-blue-fonts;
+    }
+}
+
+
+@mixin inputTextStyles {
+    font-size: $input-font-size-mobile;
+    color: $dark-grey;
+
+    @include tablet {
+        font-size: $input-font-size-tablet;
+    }
+
+    @include desktop {
+        font-size: $input-font-size-desktop;
+    }
+}

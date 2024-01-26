@@ -7,23 +7,24 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 100%;
 
     &__planner {
         display: flex;
         width: 95%;
 
         @include tablet {
-            width: 75%;
+            width: 860px;
+    
         }
 
         @include desktop {
-            width: 40%;
-            height: 700px;
+            width: 50%;
+            height: 820px;
         }
 
         &--cover {
             background-color: $light-blue-background;
-            // height: 75vh;
             width: 100%;
             margin-top: 16px;
             border-radius: 0.2rem;
@@ -31,22 +32,50 @@
 
             @include tablet {
                 width: 100%;
+                margin-top: 24px;
             }
 
             @include desktop {
                 width: 100%;
-                height: 700px;
+                height: 710px;
+            }
+        }
+        &--title {
+            margin: 24px 16px;
+
+            @include tablet {
+                margin: 64px 0 24px 64px;
+            }
+
+            @include desktop {
+                margin:  48px 0 0 64px;
             }
         }
     }
 
+
+
     &__content-container {
         
         @include tablet {
+            margin: 0 48px 64px 48px;
             display: flex;
             flex-direction: row;
         }
     }
+
+    &__subcontainer {
+
+        @include tablet {
+            width:45%;
+        }  
+    }
+
+    &__schedule{
+        @include tablet {
+            width:55%;
+        }
+    } 
 
 
     &__priorities {

@@ -1,22 +1,30 @@
 @import '../../Styles/Partials/variables';
 @import '../../Styles/Partials/mixins';
 .notes {
-    color: $dark-blue-fonts;
     border: 1px solid $dark-blue-fonts;
     background-color: white;
     width: 91%;
     margin: 16px;
 
-    &__title {
-        margin: 0;
-        text-align: center;
+    @include tablet {
+        height: 290px;
+    }
+
+    @include desktop {
+        height: 119px;
     }
 
     &__text-input {
         width: 90%;
-        height: 200px;
+        height: 190px;
         border: none;
-        margin: 16px;
+        margin: 0 16px 16px 16px;
+        @include inputTextStyles;
+
+        @include desktop {
+            margin: 0 8px 0 8px;
+            height: 75px;
+        }
     }
 
     &__text-input:focus {

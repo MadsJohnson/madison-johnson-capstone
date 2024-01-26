@@ -1,5 +1,4 @@
 @import '../../Styles/Partials/variables';
-@import '../../Styles/Partials/global';
 @import '../../Styles/Partials/mixins';
 
 .task-list {
@@ -10,32 +9,39 @@
     margin: 16px;
     padding: 0;
 
-    @include  tablet {
-        height: 130px;
+    @include tablet {
+        height: 255px;
     }
 
-    &__title {
-        margin: 0;
-        text-align: center;
+    @include desktop {
+        height: 170px;
     }
 
     &__item {
         width: 95%;
         padding: 0 8px 8px 8px;
         display: flex;
+        align-items: center;
+
+        @include tablet {
+            padding: 8px;
+        }
+
+        @include desktop {
+            padding: 6px;
+        }
 
         &--radial-toggle {
-            border: 1px solid $dark-blue-fonts;
-            margin: 0;
+            @include radialToggleButtonStyles(20px, 12px, $dark-blue-fonts);
+
         }
 
         &--input {
+            @include inputTextStyles;
             width: 100%;
             border: none;
             background: none;
-            color: $dark-blue-fonts;
-            padding-left: 4px;
-            margin-left: 4px;
+            margin-left: 8px;
         }
 
         &--input:focus {

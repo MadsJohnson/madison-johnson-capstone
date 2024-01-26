@@ -52,7 +52,7 @@ function DayPage() {
           if (formattedDate.toISOString() === new Date(date).toISOString()) {
             return (
               <div className='daypage__planner--cover' key={index}>
-                <h1>{formatDateForDisplay(dateObject)}</h1>
+                <h1 className='daypage__planner--title'>{formatDateForDisplay(dateObject)}</h1>
                 <div className="daypage__content-container">
                   <div className="daypage__priorities--mobile">
                     <Priorities />
