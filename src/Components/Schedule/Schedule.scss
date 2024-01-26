@@ -1,0 +1,71 @@
+@import '../../Styles/Partials/variables';
+@import '../../Styles/Partials/mixins';
+
+.schedule {
+    color: $dark-blue-fonts;
+    border: 1px solid $dark-blue-fonts;
+    background-color: white;
+    width: 91%;
+    margin: 16px;
+
+    @include tablet {
+        height: 931px;
+    }
+
+    @include desktop  {
+        height: 567px;
+    }
+
+    &__container {
+        width: 100%;
+        height: 90%;
+        padding: 0 8px 8px 8px;
+        display: flex;
+
+    }
+
+    &__subcontainer {
+        width: 100%;
+    }
+
+    &__row {
+        font-size: 14px;
+
+
+        &--time {
+            text-align: right;
+            font-size: 18px;
+
+            @include tablet {
+                padding: 8px 0;
+                font-size: 24px;
+            }
+
+            @include desktop {
+                font-size: 16px;
+                padding: 4px 0;
+            }
+
+        }
+
+        &--input {
+            width: 95%;
+            border: none;
+            background: none;
+            @include inputTextStyles;
+            margin-left: 8px;
+
+
+            &--container {
+                width: 100%;
+                background-color: none;
+
+            }
+        }
+
+        &--input:focus {
+            outline: 1px solid $dark-blue-fonts;
+        }
+
+    }
+}

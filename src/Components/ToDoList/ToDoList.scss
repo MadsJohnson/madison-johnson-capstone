@@ -1,0 +1,53 @@
+@import '../../Styles/Partials/variables';
+@import '../../Styles/Partials/mixins';
+
+.todo-list {
+    color: $dark-blue-fonts;
+    border: 1px solid $dark-blue-fonts;
+    background-color: white;
+    width: 91%;
+    margin: 16px;
+    padding: 0;
+
+    @include tablet {
+        height: 350px;
+    }
+
+    @include desktop {
+        height: 240px;
+    }
+
+
+    &__item {
+        width: 95%;
+        padding: 4px;
+        padding: 0 8px 8px 8px;
+        display: flex;
+        align-items: center;
+
+        @include tablet {
+            padding:8px;
+        }
+
+        @include desktop {
+            padding: 6px;
+        }
+
+        &--radial-toggle {
+            @include radialToggleButtonStyles(20px, 12px, $dark-blue-fonts);
+        }
+
+        &--input {
+            @include inputTextStyles;
+            width: 100%;
+            border: none;
+            background: none;
+            margin-left: 8px;
+        }
+
+        &--input:focus {
+            outline: 1px solid $dark-blue-fonts;
+        }
+    }
+
+}
