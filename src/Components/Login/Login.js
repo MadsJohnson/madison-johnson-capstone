@@ -29,14 +29,13 @@ const Login = () => {
             const token = response.data.token;
             console.log('login page:', token)
 
-            // Fetch user profile using the utility function
+            //Fetch user profile using the utility function
             const profileResponse = await fetchUserProfile(token);
             const userProfile = profileResponse.data;
 
             // Set user profile in sessionStorage
             sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
 
-            // Set user profile in sessionStorage
             sessionStorage.setItem('token', JSON.stringify(token));
 
             setIsLoggedIn(true);
