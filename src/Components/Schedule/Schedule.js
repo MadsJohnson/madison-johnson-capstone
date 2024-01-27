@@ -1,11 +1,8 @@
-import './Schedule.scss'
+import './Schedule.scss';
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
-import { useState, useEffect } from 'react';
-
-const Schedule = ({ agendaData, date }) => {
-    const [filteredAgenda, setFilteredAgenda] = useState([]);
-
-    // Initialize state to store schedule data
+const Schedule = ({ agendaData, date, baseUrl }) => {
     const initialSchedule = {
         '6:00': '',
         '7:00': '',
@@ -25,47 +22,104 @@ const Schedule = ({ agendaData, date }) => {
         '21:00': '',
         '22:00': '',
         '23:00': ''
-
     };
+
     const [schedule, setSchedule] = useState(initialSchedule);
 
+    // Use useRef to keep track of the timer
+    const timerRef = useRef(null);
 
     useEffect(() => {
         if (agendaData && date) {
-            console.log('Provided Date:', date);
-
-            // Filter agenda items based on the provided date
             const filteredItems = agendaData.filter(item => item.date === date);
-            console.log('Filtered Items:', filteredItems);
-
-            // Initialize a copy of the initial schedule
             const updatedSchedule = { ...initialSchedule };
 
-            // Update the schedule with the filtered agenda items
             filteredItems.forEach(item => {
                 const { time, task } = item;
-
-                // Remove leading "0:" and trailing ":00" from the time
-                const cleanedTime = time.replace(/^0:/, '').replace(/^0/, '').replace(/:00$/, '');
-
-                // Use the cleaned time as the key in the schedule
-                updatedSchedule[cleanedTime] = task;
+                // Use the time directly as the key in the schedule
+                updatedSchedule[time] = task;
             });
 
             setSchedule(updatedSchedule);
         }
     }, [agendaData, date]);
 
-    console.log(schedule)
+    const postAgendaItem = (date, time, task) => {
+        const token = sessionStorage.token;
+        axios.post(
+            `${baseUrl}/agenda`,
+            {
+                date,
+                time,
+                task,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log('Agenda item posted successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error posting agenda item:', error);
+            });
+    };
 
-
-    // Handle text input change
     const handleInputChange = (time, value) => {
-        setSchedule((prevSchedule) => ({
+        setSchedule(prevSchedule => ({
             ...prevSchedule,
             [time]: value,
         }));
+
+        // Clear the previous timer
+        clearTimeout(timerRef.current);
+
+        // Set a new timer to post the agenda item after 5 seconds of inactivity
+        timerRef.current = setTimeout(() => {
+            // Use handleAddItem to post the agenda item after 5 seconds of inactivity
+            handleAddItem(time, value);
+        }, 1000);
     };
+
+    const handleAddItem = (newTime, newValue) => {
+        // Check if an entry with the same date and time already exists
+        const existingEntry = agendaData.find(item => item.date === date && item.time === newTime);
+
+        if (!existingEntry) {
+            // Post the agenda item if it doesn't exist
+            postAgendaItem(date, newTime, newValue);
+        } else {
+            // Update the existing agenda item if it exists
+            updateAgendaItem(existingEntry.id, date, newTime, newValue);
+        }
+    };
+
+    const updateAgendaItem = (id, date, time, task) => {
+        const token = sessionStorage.token;
+        axios.put(
+            `${baseUrl}/agenda/${id}`,
+            {
+                date,
+                time,
+                task,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+            .then(response => {
+                console.log('Agenda item updated successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating agenda item:', error);
+            });
+    };
+    
+    console.log(schedule)
 
     return (
         <div className='schedule'>
@@ -80,7 +134,7 @@ const Schedule = ({ agendaData, date }) => {
                                     className='schedule__row--input'
                                     type="text"
                                     value={task}
-                                    onChange={(e) => handleInputChange(time, e.target.value)}
+                                    onChange={e => handleInputChange(time, e.target.value)}
                                 />
                             </td>
                         </tr>

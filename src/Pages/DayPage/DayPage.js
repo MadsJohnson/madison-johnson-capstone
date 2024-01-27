@@ -17,7 +17,6 @@ function DayPage() {
 
   const fetchData = () => {
     const token = sessionStorage.token
-    console.log('Token:', token);
     axios.get(`${baseUrl}/agenda`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -87,7 +86,7 @@ function DayPage() {
                     <Priorities />
                   </div>
                   <div className="daypage__schedule">
-                    <Schedule agendaData={agendaData} date={date}/>
+                    <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl}/>
                   </div>
                   <div className="daypage__subcontainer">
                     <div className="daypage__priorities--tablet">
