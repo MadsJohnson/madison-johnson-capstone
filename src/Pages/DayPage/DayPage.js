@@ -1,14 +1,43 @@
-import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Schedule from '../../Components/Schedule/Schedule.js';
 import './DayPage.scss';
 import Priorities from '../../Components/Priorities/Priorities.js';
 import ToDoList from '../../Components/ToDoList/ToDoList.js';
 import Notes from '../../Components/Notes/Notes.js'
+import { baseUrl } from '../../utils.js';
+import axios from 'axios';
 
 function DayPage() {
   const { date } = useParams();
-  console.log('date:', date);
+  const [agendaData, setAgendaData] = useState(null);
+  // const [todoData, setTodoData] = useState(null);
+  // const [prioritiesData, setPrioritiesData] = useState(null);
+  // const [notesData, setNotesData] = useState(null) 
+
+  const fetchData = () => {
+    const token = sessionStorage.token
+    console.log('Token:', token);
+    axios.get(`${baseUrl}/agenda`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        setAgendaData(response.data);
+
+      })
+      .catch((error) => {
+        console.log("Error fetching agenda data:", error);
+      });
+  };
+
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
 
   const formatDateForDisplay = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -58,7 +87,7 @@ function DayPage() {
                     <Priorities />
                   </div>
                   <div className="daypage__schedule">
-                    <Schedule />
+                    <Schedule agendaData={agendaData} date={date}/>
                   </div>
                   <div className="daypage__subcontainer">
                     <div className="daypage__priorities--tablet">

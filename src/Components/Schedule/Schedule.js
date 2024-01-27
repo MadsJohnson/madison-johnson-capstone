@@ -1,8 +1,10 @@
 import './Schedule.scss'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const Schedule = () => {
+const Schedule = ({ agendaData, date }) => {
+    const [filteredAgenda, setFilteredAgenda] = useState([]);
+
     // Initialize state to store schedule data
     const initialSchedule = {
         '6:00': '',
@@ -25,8 +27,37 @@ const Schedule = () => {
         '23:00': ''
 
     };
-
     const [schedule, setSchedule] = useState(initialSchedule);
+
+
+    useEffect(() => {
+        if (agendaData && date) {
+            console.log('Provided Date:', date);
+
+            // Filter agenda items based on the provided date
+            const filteredItems = agendaData.filter(item => item.date === date);
+            console.log('Filtered Items:', filteredItems);
+
+            // Initialize a copy of the initial schedule
+            const updatedSchedule = { ...initialSchedule };
+
+            // Update the schedule with the filtered agenda items
+            filteredItems.forEach(item => {
+                const { time, task } = item;
+
+                // Remove leading "0:" and trailing ":00" from the time
+                const cleanedTime = time.replace(/^0:/, '').replace(/^0/, '').replace(/:00$/, '');
+
+                // Use the cleaned time as the key in the schedule
+                updatedSchedule[cleanedTime] = task;
+            });
+
+            setSchedule(updatedSchedule);
+        }
+    }, [agendaData, date]);
+
+    console.log(schedule)
+
 
     // Handle text input change
     const handleInputChange = (time, value) => {
