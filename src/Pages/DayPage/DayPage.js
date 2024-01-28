@@ -10,14 +10,14 @@ import axios from 'axios';
 
 function DayPage() {
   const { date } = useParams();
+  const token = sessionStorage.token
   const [agendaData, setAgendaData] = useState(null);
-  // const [todoData, setTodoData] = useState(null);
-  // const [prioritiesData, setPrioritiesData] = useState(null);
-  // const [notesData, setNotesData] = useState(null) 
+  const [todoData, setTodoData] = useState(null);
+  const [prioritiesData, setPrioritiesData] = useState(null);
+  const [notesData, setNotesData] = useState(null) 
 
-  const fetchData = () => {
-    const token = sessionStorage.token
-    axios.get(`${baseUrl}/agenda`, {
+  const fetchAgendaData = () => {
+    axios.get(`${baseUrl}/agenda?date=${date}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,10 +31,64 @@ function DayPage() {
       });
   };
 
+  const fetchPrioritiesData = () => {
+    axios.get(`${baseUrl}/priorities?date=${date}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        setTodoData(response.data);
+
+      })
+      .catch((error) => {
+        console.log("Error fetching agenda data:", error);
+      });
+  };
+
+  const fetchToDoData = () => {
+    axios.get(`${baseUrl}/todo?date=${date}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        setPrioritiesData(response.data);
+
+      })
+      .catch((error) => {
+        console.log("Error fetching agenda data:", error);
+      });
+  };
+
+  const fetchNotesData = () => {
+    axios.get(`${baseUrl}/notes?date=${date}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        setNotesData(response.data);
+
+      })
+      .catch((error) => {
+        console.log("Error fetching agenda data:", error);
+      });
+  };
+
 
   useEffect(() => {
-    fetchData();
+    fetchAgendaData();
+    fetchPrioritiesData();
+    fetchToDoData();
+    fetchNotesData();
   }, []);
+
+  console.log("agenda data", agendaData)
+  console.log("priorties data", prioritiesData)
+  console.log("todo data", todoData)
+  console.log("notes data", notesData)
+  console.log(token)
 
 
 
@@ -86,14 +140,14 @@ function DayPage() {
                     <Priorities />
                   </div>
                   <div className="daypage__schedule">
-                    <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl}/>
+                    <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl} />
                   </div>
                   <div className="daypage__subcontainer">
                     <div className="daypage__priorities--tablet">
-                      <Priorities />
+                      <Priorities prioritiesData={prioritiesData} date={date} baseUrl={baseUrl} />
                     </div>
-                    <ToDoList />
-                    <Notes />
+                    <ToDoList todoData={todoData} date={date} baseUrl={baseUrl} />
+                    <Notes notesData={notesData} date={date} baseUrl={baseUrl} />
                   </div>
 
 

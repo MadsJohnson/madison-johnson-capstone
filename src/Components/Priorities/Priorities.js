@@ -1,45 +1,102 @@
 import './Priorities.scss';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
-const Priorities = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: 'Task 1', completed: false },
-    { id: 2, text: 'Task 2', completed: true },
-    { id: 3, text: 'Task 3', completed: false },
-    { id: 4, text: 'Task 4', completed: false},
+const Priorities = ({ prioritiesData, date, baseUrl }) => {
+  const [priorities, setPriorities] = useState([
+    { priority: '', completed: false },
+    { priority: '', completed: false },
+    { priority: '', completed: false },
+    { priority: '', completed: false },
   ]);
 
-  const toggleComplete = (taskId) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
-      )
-    );
+  const handleInputChange = (index, value) => {
+    setPriorities((prevPriorities) => {
+      const updatedPriorities = [...prevPriorities];
+      updatedPriorities[index] = {
+        ...updatedPriorities[index],
+        priority: value,
+      };
+      return updatedPriorities;
+    });
   };
 
-  const handleTextChange = (taskId, newText) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, text: newText } : task
-      )
-    );
+  const handleToggle = (index) => {
+    setPriorities((prevPriorities) => {
+      const updatedPriorities = [...prevPriorities];
+      updatedPriorities[index] = {
+        ...updatedPriorities[index],
+        completed: !updatedPriorities[index].completed,
+      };
+      return updatedPriorities;
+    });
   };
+  
+  console.log(priorities)
+
+  // const postPriorityItem = (priority) => {
+  //   const token = sessionStorage.token;
+  //   axios
+  //     .post(
+  //       `${baseUrl}/priorities`,
+  //       {
+  //         priority: priority.priority,
+  //         due_date: date,
+  //         completed: priority.completed,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log('Priority item posted successfully:', response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error posting priority item:', error);
+  //     });
+  // };
+
+  // const updatePriorityItem = (id, priority) => {
+  //   const token = sessionStorage.token;
+  //   axios
+  //     .put(
+  //       `${baseUrl}/priorities/${id}`,
+  //       {
+  //         priority: priority.priority,
+  //         due_date: date,
+  //         completed: priority.completed,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log('Priority item updated successfully:', response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error updating priority item:', error);
+  //     });
+  // };
 
   return (
     <div className="task-list">
       <h2 className="task-list__title">Priorities</h2>
-      {tasks.map((task) => (
-        <div key={task.id} className="task-list__item">
+      {priorities.map((priority, index) => (
+        <div key={index} className="task-list__item">
           <input
-            type="radio"
+            type="checkbox"
             className="task-list__item--radial-toggle"
-            onClick={() => toggleComplete(task.id)}
-            checked={task.completed}
+            onChange={() => handleToggle(index)}
+            checked={priority.completed}
           />
           <input
             className="task-list__item--input"
-            value={task.text}
-            onChange={(e) => handleTextChange(task.id, e.target.value)}
+            value={priority.priority}
+            onChange={(e) => handleInputChange(index, e.target.value)}
           />
         </div>
       ))}
