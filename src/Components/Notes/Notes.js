@@ -75,17 +75,21 @@ const Notes = ({notesData, date, baseUrl}) => {
 
 
 
-    const handleInputChange = (event) => {
-        setNoteText(event.target.value);
+    useEffect(() => {
+        // Use useEffect to schedule putNote after the state is fully updated
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+        }
+        timerRef.current = setTimeout(() => {
+            putNote();
+        }, 1000);
+    }, [noteText]);
 
-       // Clear the previous timer
-       clearTimeout(timerRef.current);
-
-       // Set a new timer to post the agenda item after 5 seconds of inactivity
-       timerRef.current = setTimeout(() => {
-           // Use handleAddItem to post the agenda item after 5 seconds of inactivity
-           putNote();
-       }, 1000);
+    const handleInputChange = event => {
+        setNoteText(prev => {
+            const newText = event.target.value;
+            return newText;
+        });
     };
 
     return (
