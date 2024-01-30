@@ -4,6 +4,7 @@ import MonthNav from '../../Components/ MonthNav/MonthNav';
 import React, { useEffect, useState } from 'react';
 import { fetchUserProfile } from '../../utils';
 import { Link } from 'react-router-dom';
+import MainNav from '../../Components/MainNav/MainNav';
 
 
 function MainPage() {
@@ -14,16 +15,16 @@ function MainPage() {
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
-  
+
     const updateProfile = (user) => {
       console.log('User Profile:', user);
-  
+
       // Update userProfile state with username and name only
       const { username, name, } = user;
       const updatedProfile = { username, name };
       sessionStorage.setItem('userProfile', JSON.stringify(updatedProfile));
     };
-  
+
     if (token) {
       // Fetch user profile using the utility function
       fetchUserProfile(token)
@@ -41,7 +42,7 @@ function MainPage() {
       setIsLoading(false);
     }
   }, []);
-  
+
 
 
 
@@ -52,7 +53,8 @@ function MainPage() {
         <h1>Loading...</h1>
       ) : (
         <>
-          <h1>{userName}'s Planner</h1>
+          <MainNav />
+          <h1>Welcome {userName}</h1>
           <div className='mainpage__planner'>
             <div className='mainpage__planner--cover'>
               <Link to="/day/2024-01-01" className='mainpage__planner--page-turn-icon--container'>

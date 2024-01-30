@@ -23,8 +23,8 @@ const Notes = ({notesData, date, baseUrl}) => {
 
     }, [notesData]);
 
-    console.log(noteText)
-    console.log(noteId)
+    // console.log(noteText)
+    // console.log(noteId)
 
     const postNote = () => {
         const token = sessionStorage.token;

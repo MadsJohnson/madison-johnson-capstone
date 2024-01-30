@@ -11,7 +11,9 @@
 
     &__planner {
         display: flex;
-        width: 95%;
+        align-items: center;
+        flex-direction: column;
+        width: 85%;
 
         @include tablet {
             width: 860px;
@@ -42,6 +44,7 @@
         }
         &--title {
             margin: 24px 16px;
+            text-align: center;
 
             @include tablet {
                 margin: 64px 0 24px 64px;
