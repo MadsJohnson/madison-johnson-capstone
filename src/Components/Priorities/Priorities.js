@@ -34,53 +34,53 @@ const Priorities = ({ prioritiesData, date, baseUrl }) => {
   
   console.log(priorities)
 
-  // const postPriorityItem = (priority) => {
-  //   const token = sessionStorage.token;
-  //   axios
-  //     .post(
-  //       `${baseUrl}/priorities`,
-  //       {
-  //         priority: priority.priority,
-  //         due_date: date,
-  //         completed: priority.completed,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log('Priority item posted successfully:', response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error posting priority item:', error);
-  //     });
-  // };
+  const postPriorityItem = (priority) => {
+    const token = sessionStorage.token;
+    axios
+      .post(
+        `${baseUrl}/priorities`,
+        {
+          priority: priority.priority,
+          due_date: date,
+          completed: priority.completed,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log('Priority item posted successfully:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error posting priority item:', error);
+      });
+  };
 
-  // const updatePriorityItem = (id, priority) => {
-  //   const token = sessionStorage.token;
-  //   axios
-  //     .put(
-  //       `${baseUrl}/priorities/${id}`,
-  //       {
-  //         priority: priority.priority,
-  //         due_date: date,
-  //         completed: priority.completed,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log('Priority item updated successfully:', response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error updating priority item:', error);
-  //     });
-  // };
+  const updatePriorityItem = (id, priority) => {
+    const token = sessionStorage.token;
+    axios
+      .put(
+        `${baseUrl}/priorities/${id}`,
+        {
+          priority: priority.priority,
+          due_date: date,
+          completed: priority.completed,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log('Priority item updated successfully:', response.data);
+      })
+      .catch((error) => {
+        console.error('Error updating priority item:', error);
+      });
+  };
 
   return (
     <div className="task-list">
