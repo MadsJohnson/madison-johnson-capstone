@@ -7,6 +7,7 @@ import MainPage from './Pages/MainPage/MainPage';
 import DayPage from './Pages/DayPage/DayPage'
 import HomePage from './Pages/HomePage/HomePage';
 import Login from './Components/Login/Login';
+import SignUp from './Components/SignUp/SignUp';
 
 function App() {
 
@@ -16,8 +17,8 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route exact path='/mainpage' element={<PrivateRoute element={<MainPage/>}/> }/>
           <Route exact path='/day/:date' element={<PrivateRoute element={<DayPage/>}/> }/>
         </Routes>
