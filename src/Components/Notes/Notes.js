@@ -1,15 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Notes.scss';
 
-const Notes = (notesData, date) => {
+const Notes = ({notesData, date}) => {
 
-const [noteText, setNoteText] = useState('');
+    const [noteText, setNoteText] = useState('');
 
-const handleInputChange = (event) => {
-    setNoteText(event.target.value);
-};
 
-console.log(noteText)
+    useEffect(() => {
+        if (notesData && notesData.length > 0) {
+            setNoteText(notesData[0].note);
+        }
+
+    }, [notesData]);
+
+    console.log(noteText)
+
+    const handleInputChange = (event) => {
+        setNoteText(event.target.value);
+    };
 
     return (
         <div className="notes">
