@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Notes.scss';
 
@@ -6,6 +6,7 @@ const Notes = ({notesData, date, baseUrl}) => {
 
     const [noteText, setNoteText] = useState('');
     const [noteId, setNoteId] = useState(null)
+    const timerRef = useRef(null);
 
 
     useEffect(() => {
@@ -49,10 +50,42 @@ const Notes = ({notesData, date, baseUrl}) => {
             });
     };
 
+    const putNote = () => {
+        const token = sessionStorage.token;
+        axios
+            .put(
+                `${baseUrl}/notes/${noteId}`,
+                {
+                    note: noteText,
+                    due_date: date,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then(response => {
+                console.log('Note updated successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating note:', error);
+            });
+    };
+
 
 
     const handleInputChange = (event) => {
         setNoteText(event.target.value);
+
+       // Clear the previous timer
+       clearTimeout(timerRef.current);
+
+       // Set a new timer to post the agenda item after 5 seconds of inactivity
+       timerRef.current = setTimeout(() => {
+           // Use handleAddItem to post the agenda item after 5 seconds of inactivity
+           putNote();
+       }, 1000);
     };
 
     return (
