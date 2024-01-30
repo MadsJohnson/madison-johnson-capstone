@@ -8,16 +8,22 @@ const MainNav = () => {
     const handleLogout = () => {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('userProfile');
-        
+
         navigate('/');
     }
 
     console.log()
 
+    const goToToday = () => {
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        navigate(`/day/${currentDate}`);
+    }
+
     return (
         <div className='main-nav'>
             <button className='main-nav__button' onClick={handleLogout}>Logout</button>
-            <button className='main-nav__button'>Go to today</button>
+            <button className='main-nav__button' onClick={goToToday}>Go to today</button>
         </div>
     )
 }
