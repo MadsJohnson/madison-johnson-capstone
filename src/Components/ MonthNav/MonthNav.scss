@@ -3,8 +3,12 @@
 .month-nav {
     margin-top: 17px;
 
+    @include tablet {
+        margin-top: 21px;
+    }
+
     @include desktop {
-        margin-top: 1.35rem;
+        margin-top: 25px;
     }
 
 
@@ -14,8 +18,11 @@
 
     &__container{
         background-color: white;
-        border-radius: 0 6px 6px 0;
+        border-radius: 0 10px 10px 0;
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+
     
     }
 
@@ -27,14 +34,14 @@
         padding: 2.5px;
         margin: 0;
 
-        @include desktop {
-            font-size: 0.75rem;
-            padding: 0.45rem;
+        @include tablet {
+            font-size: 18px;
+            padding: 10px 5px;
         }
 
         @include desktop {
-            font-size: 0.76rem;
-            padding: 0.4rem;
+            font-size: 12px;
+            padding: 6px;
         }
         
 

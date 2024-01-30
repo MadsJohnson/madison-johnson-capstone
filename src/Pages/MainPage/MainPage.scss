@@ -6,36 +6,46 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 100%;
+
+    @include desktop {
+        height: 680px;
+    }
 
     &__planner {
         display: flex;
-        width: 95%;
+        width: 85%;
 
         @include tablet {
-            width: 75%;
+            width: 85%;
+            height: 1020px;
+            margin: 0 48px;
         }
 
         @include desktop {
-            width:40%;
-            height: 700px;
+            width: 45%;
+            height: 100%;
         }
 
         &--cover {
             background: rgba(0, 0, 0, 0.1) url('../../Assets/Images/aaron-burden-Bycd2wF5vQU-unsplash.jpg') center;
             background-size: 199%;
-            height: 75vh;
             width: 100%;
+            height: 600px;
             margin-top: 16px;
             border-radius: 0.2rem;
             box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
             @include tablet {
                 width: 100%;
+                height: 1020px;
+                margin-top: 24px;
             }
     
             @include desktop {
                 width: 100%;
-                height: 700px;
+                height: 100%;
+                margin-top: 20px;
             }
         }
 
@@ -53,6 +63,8 @@
             margin: 0;
             color: #528fa4;
             padding-top: 33px;
+
+         
 
             &--container {
                 height: 140px;

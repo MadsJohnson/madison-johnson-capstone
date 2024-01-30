@@ -1,6 +1,8 @@
+@import '../../Styles/Partials/mixins.scss';
 
 .main-nav {
     display: flex;
+
     &__link {
 
     }
@@ -13,6 +15,10 @@
         height: 30px;
         margin: 30px 15px 10px 15px;
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+        @include desktop  {
+            margin-top: 24px;
+        }
     }
 
     &__button:hover {
