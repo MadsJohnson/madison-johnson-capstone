@@ -76,14 +76,16 @@ const Notes = ({notesData, date, baseUrl}) => {
 
 
     useEffect(() => {
-        // Use useEffect to schedule putNote after the state is fully updated
-        if (timerRef.current) {
-            clearTimeout(timerRef.current);
+        if (noteText !== '' && noteId !== null) {
+            // Only initiate the putNote if noteText is not empty and noteId is not null
+            if (timerRef.current) {
+                clearTimeout(timerRef.current);
+            }
+            timerRef.current = setTimeout(() => {
+                putNote();
+            }, 1000);
         }
-        timerRef.current = setTimeout(() => {
-            putNote();
-        }, 1000);
-    }, [noteText]);
+    }, [noteText, noteId]);
 
     const handleInputChange = event => {
         setNoteText(prev => {
