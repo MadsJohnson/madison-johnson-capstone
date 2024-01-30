@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchUserProfile, loginUrl } from '../../utils';
+import './Login.scss'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -54,33 +55,34 @@ const Login = () => {
     };
 
 
-    const renderSignupButton = () => (
-        <button className="btn btn-primary" onClick={() => setIsSignedUp(true)}>
-            Signup
-        </button>
-    );
-
     return (
-        <div className="App">
-            <h1>Login</h1>
+        <div className="loginPage">
+            <h1 className="loginPage__title">Sign in to your Daily Plan account</h1>
             {isLoginError && <label style={{ color: "red" }}>{errorMessage}</label>}
-            <form onSubmit={handleLogin}>
-                <div className="form-group">
-                    <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username" />
+            <div className="loginPage__form-container">
+                <form className="loginPage__form" onSubmit={handleLogin}>
+                    <div className="loginPage__form-group">
+                        <label className="loginPage__form-group--subtitle">Username:</label>
+                        <br></br>
+                        <input className="loginPage__form-group--input" type="text" id="username" name="username" placeholder="Email" />
+                    </div>
+                    <div className="loginPage__form-group">
+                        <label htmlFor="password" className="loginPage__form-group--subtitle">Password:</label>
+                        <br></br>
+                        <input className="loginPage__form-group--input" type="password" id="password" name="password" placeholder="Password" />
+                    </div>
+                    <button className="loginPage__button" type="submit" disabled={loading}>
+                        {loading ? 'Logging In...' : 'Login'}
+                    </button>
+                </form>
+                <div className="loginPage__signup">
+                    <p className="loginPage__copy">Don't have an account?</p>
+                    <Link to="/signup" className="btn btn-primary">
+                        <button className="loginPage__button">Create an Account</button>
+                    </Link>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" />
-                </div>
-                <button className="btn btn-primary" type="submit" disabled={loading}>
-                    {loading ? 'Logging In...' : 'Login'}
-                </button>
-            </form>
-            <br />
-            <div>
-                Don't have an account? {renderSignupButton()}
             </div>
+
         </div>
     );
 };
