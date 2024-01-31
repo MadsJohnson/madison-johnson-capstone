@@ -7,7 +7,8 @@ import ToDoList from '../../Components/ToDoList/ToDoList.js';
 import Notes from '../../Components/Notes/Notes.js'
 import { baseUrl } from '../../utils.js';
 import axios from 'axios';
-import MainNav from '../../Components/MainNav/MainNav.js';
+import MainNav from '../../Components/MainNav/MainNav.js'
+
 
 function DayPage() {
   const { date } = useParams();
@@ -132,7 +133,6 @@ function DayPage() {
         <MainNav/>
         {dates.map((dateObject, index) => {
           const formattedDate = formatDateForComparison(dateObject.toISOString());
-
           if (formattedDate.toISOString() === new Date(date).toISOString()) {
             return (
               <div className='daypage__planner--cover' key={index}>
@@ -161,6 +161,7 @@ function DayPage() {
 
           return null;
         })}
+       
       </div>
     </div>
   );
