@@ -130,7 +130,7 @@ function DayPage() {
   return (
     <div className='daypage'>
       <div className='daypage__planner'>
-        <MainNav/>
+        <MainNav date={date}/>
         {dates.map((dateObject, index) => {
           const formattedDate = formatDateForComparison(dateObject.toISOString());
           if (formattedDate.toISOString() === new Date(date).toISOString()) {
