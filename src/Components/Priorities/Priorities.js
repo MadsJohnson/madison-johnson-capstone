@@ -3,12 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
 const Priorities = ({ prioritiesData, date, baseUrl }) => {
-  const [priorities, setPriorities] = useState([
-    { priority: '', completed: false },
-    { priority: '', completed: false },
-    { priority: '', completed: false },
-    { priority: '', completed: false },
-  ]);
+  const [priorities, setPriorities] = useState(prioritiesData || []);
 
   const handleInputChange = (index, value) => {
     setPriorities((prevPriorities) => {
@@ -31,8 +26,10 @@ const Priorities = ({ prioritiesData, date, baseUrl }) => {
       return updatedPriorities;
     });
   };
-  
-  console.log(priorities)
+
+  const handleAddPriority = () => {
+    setPriorities((prevPriorities) => [...prevPriorities, { priority: '', completed: false }]);
+  };
 
   const postPriorityItem = (priority) => {
     const token = sessionStorage.token;
@@ -81,10 +78,12 @@ const Priorities = ({ prioritiesData, date, baseUrl }) => {
         console.error('Error updating priority item:', error);
       });
   };
-
   return (
     <div className="task-list">
-      <h2 className="task-list__title">Priorities</h2>
+      <div className='task-list__title-container'>
+        <h2 className="task-list__title">Priorities</h2>
+        <button className="task-list__button" onClick={handleAddPriority}>+</button>
+      </div>
       {priorities.map((priority, index) => (
         <div key={index} className="task-list__item">
           <input
