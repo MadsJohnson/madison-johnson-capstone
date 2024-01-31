@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './YearNav.scss';
 import { useNavigate } from 'react-router-dom';
 
-const YearNav = ({setShowYearNav}) => {
+const YearNav = ({setShowYearNav, date}) => {
     const navigate = useNavigate();
     const currentYear = 2024; 
     const months = Array.from({ length: 12 }, (_, monthIndex) => monthIndex + 1);
@@ -48,7 +48,7 @@ const YearNav = ({setShowYearNav}) => {
 
     const handleDateClick = (date) => {
         const formattedDate = new Date(date).toISOString().split('T')[0];
-        navigate(`/day/${formattedDate}`);
+        navigate(`/day/${date}`);
 
         setShowYearNav(false);
 
