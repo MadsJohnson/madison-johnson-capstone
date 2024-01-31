@@ -1,9 +1,9 @@
+@import '../../Styles/Partials/mixins.scss';
 
 .main-nav {
     display: flex;
-    &__link {
+    position: relative;
 
-    }
 
     &__button {
         background-color: #dbe1f4;
@@ -13,10 +13,29 @@
         height: 30px;
         margin: 30px 15px 10px 15px;
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        z-index: 2000; 
+
+        @include desktop {
+            margin-top: 24px;
+        }
     }
 
     &__button:hover {
         background-color: #0056b3;
     }
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        cursor: pointer;
+
+    }
+
 
 }

@@ -54,7 +54,6 @@ function MainPage() {
       ) : (
         <>
           <MainNav />
-          <h1>Welcome {userName}</h1>
           <div className='mainpage__planner'>
             <div className='mainpage__planner--cover'>
               <Link to="/day/2024-01-01" className='mainpage__planner--page-turn-icon--container'>

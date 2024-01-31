@@ -1,0 +1,61 @@
+@import '../../Styles/Partials/mixins';
+@import '../../Styles/Partials/variables';
+
+.year-at-a-glance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 10%;
+    z-index: 1000;
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+    margin: 10px  0;
+}
+
+.calendar-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.month {
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    width: calc(33.33% - 20px);
+    display: none;
+}
+
+.month.visible {
+    display: block;
+    width: 350px;
+}
+
+.week-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day {
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    text-align: center;
+    margin: 2px;
+    width: calc(14.28% - 4px);
+}
+
+.button {
+    border: none;
+    margin: 16px;
+}
