@@ -1,20 +1,32 @@
+import { Value } from 'sass';
 import './Priorities.scss';
 import React, { useState } from 'react';
 
 const Priorities = () => {
   const [showInput, setShowInput] = useState(false);
+  const [completed, setCompleted] = useState('');
+  const [userInput, setUserInput] = useState('');
 
   const handleAddPriority = () => {
     setShowInput(true);
   };
 
-  const handleInputChange = (e) => {
-    // Handle input change here
+  const handleClose = () => {
+    setShowInput(false)
+  }
+
+  const handleInputChange = (value) => {
+    setUserInput(value)
+
   };
 
   const handleToggle = () => {
-    setShowInput(!showInput);
+      setCompleted(!completed);
   };
+
+  console.log(userInput);
+  console.log(completed)
+
 
   return (
     <div className="task-list">
@@ -22,20 +34,19 @@ const Priorities = () => {
         <h2 className="task-list__title">Priorities</h2>
         <button className="task-list__button" onClick={handleAddPriority}>+</button>
       </div>
-
       {showInput && (
         <div className="task-list__item">
           <input
             type="checkbox"
             className="task-list__item--radial-toggle"
-            // Add onChange handler for toggling completion
+            onClick={handleToggle}
+            checked={completed}
           />
           <input
             className="task-list__item--input"
-            // Add value and onChange handler for updating priority
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e.target.value)}
           />
-          <button onClick={handleToggle}>-</button>
+          <button onClick={handleClose}>-</button>
         </div>
       )}
     </div>
