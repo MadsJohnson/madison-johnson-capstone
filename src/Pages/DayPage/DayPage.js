@@ -40,7 +40,7 @@ function DayPage() {
       },
     })
       .then((response) => {
-        setTodoData(response.data);
+        setPrioritiesData(response.data);
 
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ function DayPage() {
       },
     })
       .then((response) => {
-        setPrioritiesData(response.data);
+        setTodoData(response.data);
 
       })
       .catch((error) => {
@@ -84,7 +84,7 @@ function DayPage() {
     fetchPrioritiesData();
     fetchToDoData();
     fetchNotesData();
-  }, []);
+  }, [date]);
 
   console.log("agenda data", agendaData)
   console.log("priorties data", prioritiesData)
