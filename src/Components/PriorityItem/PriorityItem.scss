@@ -1,0 +1,46 @@
+.task-list__item {
+    width: 95%;
+    padding: 0 8px 8px 8px;
+    display: flex;
+    align-items: center;
+
+    @include tablet {
+        padding: 8px;
+    }
+
+    @include desktop {
+        padding: 6px;
+    }
+
+}
+
+.task-list__item--radial-toggle {
+    @include radialToggleButtonStyles(20px, 12px, $dark-blue-fonts);
+
+}
+
+.task-list__item--input {
+    @include inputTextStyles;
+    width: 100%;
+    border: none;
+    background: none;
+    margin-left: 8px;
+
+}
+
+.task-list__item--input:focus {
+    outline: 1px solid $dark-blue-fonts;
+}
+
+.task-list__button {
+    background-color: #dbe1f4;
+    box-shadow: 4px 2px 2px rgba(128, 128, 128, 0.5);
+    color: #467ab5;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    height: px;
+
+}

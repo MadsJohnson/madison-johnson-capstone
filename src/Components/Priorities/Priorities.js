@@ -1,11 +1,14 @@
 import './Priorities.scss';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import PriorityItem from '../PriorityItem/PriorityItem';
 
-const Priorities = ({ baseUrl, date }) => {
+const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
   const [showInput, setShowInput] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [userInput, setUserInput] = useState('');
+  const [shouldFetchData, setShouldFetchData] = useState(false);
+
   const timeoutRef = useRef(null);
 
   const handleAddPriority = () => {
@@ -57,11 +60,22 @@ const Priorities = ({ baseUrl, date }) => {
         setShowInput(false);
         setUserInput('');
         setCompleted(false);
+        setShouldFetchData(true)
+
       })
       .catch((error) => {
         console.error('Error posting priority item:', error);
       });
   };
+
+  useEffect(() => {
+    // Fetch priorities data only if the flag is true
+    if (shouldFetchData) {
+      fetchPrioritiesData();
+      setShouldFetchData(false); // Reset the flag after fetching data
+    }
+  }, [shouldFetchData, fetchPrioritiesData]);
+
 
   return (
     <div className="task-list">
@@ -81,9 +95,10 @@ const Priorities = ({ baseUrl, date }) => {
             className="task-list__item--input"
             onChange={(e) => handleInputChange(e.target.value)}
           />
-          <button onClick={handleClose}>-</button>
+          <button className="task-list__button" onClick={handleClose}>-</button>
         </div>
       )}
+      <PriorityItem baseUrl={baseUrl} prioritiesData={prioritiesData} />
     </div>
   );
 };

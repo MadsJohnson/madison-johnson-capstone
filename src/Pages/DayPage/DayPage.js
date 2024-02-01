@@ -11,6 +11,7 @@ import MainNav from '../../Components/MainNav/MainNav.js'
 
 
 function DayPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const { date } = useParams();
   const token = sessionStorage.token
   const [agendaData, setAgendaData] = useState(null);
@@ -84,6 +85,9 @@ function DayPage() {
     fetchPrioritiesData();
     fetchToDoData();
     fetchNotesData();
+
+    setIsLoading(false);
+
   }, [date]);
 
   console.log("agenda data", agendaData)
@@ -139,14 +143,14 @@ function DayPage() {
                 <h1 className='daypage__planner--title'>{formatDateForDisplay(dateObject)}</h1>
                 <div className="daypage__content-container">
                   <div className="daypage__priorities--mobile">
-                    <Priorities />
+                    <Priorities fetchPrioritiesData={fetchPrioritiesData} fetchToDoData={fetchToDoData} prioritiesData={prioritiesData} date={date} baseUrl={baseUrl} />
                   </div>
                   <div className="daypage__schedule">
                     <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl} />
                   </div>
                   <div className="daypage__subcontainer">
                     <div className="daypage__priorities--tablet">
-                      <Priorities prioritiesData={prioritiesData} date={date} baseUrl={baseUrl} />
+                      <Priorities fetchPrioritiesData={fetchPrioritiesData} prioritiesData={prioritiesData} date={date} baseUrl={baseUrl} />
                     </div>
                     <ToDoList todoData={todoData} date={date} baseUrl={baseUrl} />
                     <Notes notesData={notesData} date={date} baseUrl={baseUrl} />

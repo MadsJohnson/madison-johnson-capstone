@@ -1,50 +1,78 @@
-// PriorityItem.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const PriorityItem = ({ priority, index, date, baseUrl, onDelete }) => {
-    const [completed, setCompleted] = useState(priority.completed);
-    const [userInput, setUserInput] = useState(priority.priority);
+const PriorityItem = ({ prioritiesData, baseUrl }) => {
+    const [priorities, setPriorities] = useState([]);
 
     useEffect(() => {
-        // Use a timeout to post the data after 1000 milliseconds (1 second)
-        const timeoutId = setTimeout(() => {
-            putPriorityItem();
-            setShowInput(false);
-        }, 1000);
+        setPriorities(prioritiesData);
+    }, [prioritiesData]);
 
-        return () => clearTimeout(timeoutId); // Clear timeout on component unmount
-    }, [userInput, completed]);
+    useEffect(() => {
+        console.log("Mapped Priorities:", priorities);
+    }, [priorities]);
 
-    const handleInputChange = (value) => {
-        setUserInput(value);
+    const deletePriority = (priority_id) => {
+        const token = sessionStorage.token;
+
+        axios
+            .delete(
+                `${baseUrl}/priorities/${priority_id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                }
+            )
+            .then((response) => {
+                console.log('Priority item delete successfully:', response.data);
+
+                // Update state after successful deletion
+                setPriorities((prevPriorities) =>
+                    prevPriorities.filter((priority) => priority.priority_id !== priority_id)
+                );
+
+
+            })
+            .catch((error) => {
+                console.error('Error deleting priority item:', error);
+            });
     };
 
-    const handleToggle = () => {
-        setCompleted(!completed);
-    };
+    const handleDelete = (priority_id) => {
+        deletePriority(priority_id);
 
-    const handleDelete = () => {
-        onDelete(index);
-    };
+    }
+
+
 
     return (
-        <div className="task-list__item">
-            <input
-                type="checkbox"
-                className="task-list__item--radial-toggle"
-                onChange={handleToggle}
-                checked={completed} />
-            <input
-                className="task-list__item--input"
-                value={userInput}
-                onChange={(e) => handleInputChange(e.target.value)} />
-            <button
-                className="task-list__item--delete-button"
-                onClick={handleDelete}>
-                -
-            </button>
-        </div >
+        <div>
+            {console.log("Before Mapping:", priorities)}
+            {priorities && priorities.length > 0 ? (
+                priorities
+                    .map((priority) => (
+                        <div key={priority.priority_id} className="task-list__item">
+                            {console.log("Priority ID:", priority.priority_id)}
+                            {console.log("Completed:", priority.completed)}
+                            {console.log("Priority:", priority.priority)}
+                            <input
+                                type="checkbox"
+                                className="task-list__item--radial-toggle"
+                                checked={priority.completed}
+                            />
+                            <input
+                                type="text"
+                                value={priority.priority}
+                                className="task-list__item--input"
+                            />
+                            <button onClick={() => handleDelete(priority.priority_id)} className="task-list__button">-</button>
+                        </div>
+                    ))
+            ) : (
+                <></>
+            )}
+        </div>
     );
 };
 
