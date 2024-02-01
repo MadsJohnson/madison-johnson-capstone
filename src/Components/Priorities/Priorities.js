@@ -7,7 +7,6 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
   const [showInput, setShowInput] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [userInput, setUserInput] = useState('');
-  const [shouldFetchData, setShouldFetchData] = useState(false);
 
   const timeoutRef = useRef(null);
 
@@ -15,24 +14,26 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
     setShowInput(true);
   };
 
+
   const handleClose = () => {
     setShowInput(false);
     clearTimeout(timeoutRef.current);
     setUserInput('');
     setCompleted(false);
+
   };
 
   const handleInputChange = (value) => {
     setUserInput(value);
-
-    // Clear the previous timeout (if any)
     clearTimeout(timeoutRef.current);
-
+  
     // Set a new timeout to call postPriorityItem after 2000 milliseconds (2 seconds)
     timeoutRef.current = setTimeout(() => {
       postPriorityItem();
-    }, 2000);
+    }, 3000);
   };
+
+  
 
   const handleToggle = () => {
     setCompleted(!completed);
@@ -60,7 +61,7 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
         setShowInput(false);
         setUserInput('');
         setCompleted(false);
-        setShouldFetchData(true)
+        fetchPrioritiesData();
 
       })
       .catch((error) => {
@@ -68,13 +69,7 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
       });
   };
 
-  useEffect(() => {
-    // Fetch priorities data only if the flag is true
-    if (shouldFetchData) {
-      fetchPrioritiesData();
-      setShouldFetchData(false); // Reset the flag after fetching data
-    }
-  }, [shouldFetchData, fetchPrioritiesData]);
+
 
 
   return (
@@ -98,7 +93,7 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
           <button className="task-list__button" onClick={handleClose}>-</button>
         </div>
       )}
-      <PriorityItem baseUrl={baseUrl} prioritiesData={prioritiesData} />
+      <PriorityItem fetchPrioritiesData={fetchPrioritiesData} baseUrl={baseUrl} prioritiesData={prioritiesData}date={date} />
     </div>
   );
 };
