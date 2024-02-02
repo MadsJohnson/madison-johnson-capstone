@@ -2,18 +2,30 @@
 @import '../../Styles/Partials/mixins';
 
 .schedule {
-    color: $dark-blue-fonts;
-    border: 1px solid $dark-blue-fonts;
-    background-color: white;
+    color: $dark-purple;
+    background-color: rgba($light-purple, 0.8);
+    border-radius: 5px;
     width: 91%;
     margin: 16px;
+    max-height: 800px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 0.5em; 
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $medium-purple;
+        border-radius: 5px;
+    }
 
     @include tablet {
-        height: 931px;
+        max-height: 931px;
     }
 
     @include desktop  {
-        height: 567px;
+        max-height: 567px;
     }
 
     &__container {
@@ -30,15 +42,31 @@
 
     &__row {
         font-size: 14px;
+        width: 95%;
+        margin: 6px 0;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        background-color: rgba($medium-purple, 0.5);
+        border-radius: 5px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+
+        &:hover {
+            transform: translate(-2px, -2px); 
+        }
 
 
         &--time {
             text-align: right;
             font-size: 18px;
+            font-weight: 600;
 
             @include tablet {
                 padding: 8px 0;
-                font-size: 24px;
+
             }
 
             @include desktop {
@@ -49,22 +77,25 @@
         }
 
         &--input {
-            width: 95%;
+            width: 100%;
+            height:  100%;
             border: none;
             background: none;
             @include inputTextStyles;
-            margin-left: 8px;
 
 
             &--container {
-                width: 100%;
+                width: 83%;
                 background-color: none;
+                display: flex;
+                align-content: center;
+    
 
             }
         }
 
         &--input:focus {
-            outline: 1px solid $dark-blue-fonts;
+            outline: 0.5px solid $dark-purple;
         }
 
     }

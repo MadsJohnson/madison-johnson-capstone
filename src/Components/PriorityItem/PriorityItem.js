@@ -1,27 +1,30 @@
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import deleteIcon from '../../Assets/Icons/delete.svg'
+import "./PriorityItem.scss"
 
 const PriorityItem = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
     const [priorities, setPriorities] = useState([]);
-    const [userInputs, setUserInputs] = useState({});  
-    const [completedStatus, setCompletedStatus] = useState({});  
+    const [userInputs, setUserInputs] = useState({});
+    const [completedStatus, setCompletedStatus] = useState({});
     const timeoutRef = useRef(null);
 
+    console.log(userInputs)
+
     useEffect(() => {
-        // Set the initial state for userInputs and completedStatus based on prioritiesData
         const initialUserInputs = {};
         const initialCompletedStatus = {};
-    
+
         if (prioritiesData && prioritiesData.length > 0) {
             prioritiesData.forEach((priority) => {
                 initialUserInputs[priority.priority_id] = priority.priority;
                 initialCompletedStatus[priority.priority_id] = priority.completed;
             });
         }
-    
+
         setUserInputs(initialUserInputs);
         setCompletedStatus(initialCompletedStatus);
-    
+
         setPriorities(prioritiesData);
     }, [prioritiesData]);
 
@@ -30,7 +33,6 @@ const PriorityItem = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) =>
     }, [priorities]);
 
     useEffect(() => {
-        // Cleanup function to clear the timeout
         return () => {
             clearTimeout(timeoutRef.current);
         };
@@ -99,7 +101,7 @@ const PriorityItem = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) =>
 
         timeoutRef.current = setTimeout(() => {
             updatePriorityItem(priority_id, newPriorityValue, completedStatus[priority_id] || '');
-        }, 1000);
+        }, 3000);
     };
 
     const updatePriorityItem = (priority_id, newPriorityValue, newCompletionStatus) => {
@@ -134,22 +136,26 @@ const PriorityItem = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) =>
             {priorities && priorities.length > 0 ? (
                 priorities.map((priority) => (
                     <div key={priority.priority_id} className="task-list__item">
-                        {console.log("Priority ID:", priority.priority_id)}
+                        {/* {console.log("Priority ID:", priority.priority_id)}
                         {console.log("Completed:", priority.completed)}
-                        {console.log("Priority:", priority.priority)}
+                        {console.log("Priority:", priority.priority)} */}
                         <input
                             type="checkbox"
                             className="task-list__item--radial-toggle"
                             checked={completedStatus[priority.priority_id] || false}
                             onChange={(e) => handleCheckboxChange(priority.priority_id, e.target.checked)}
                         />
-                        <input
-                            type="text"
-                            value={userInputs[priority.priority_id] || ''}
-                            className="task-list__item--input"
-                            onChange={(e) => handleTextChange(priority.priority_id, e.target.value)}
-                        />
-                        <button onClick={() => handleDelete(priority.priority_id)} className="task-list__button">-</button>
+                        <div className={`task-list__item--input-container ${completedStatus[priority.priority_id] ? 'completed' : ''}`}>
+                            <input
+                                type="text"
+                                value={userInputs[priority.priority_id] || ''}
+                                className="task-list__item--input"
+                                onChange={(e) => handleTextChange(priority.priority_id, e.target.value)}
+                            />
+                        </div>
+                        <button onClick={() => handleDelete(priority.priority_id)} className="task-list__button">
+                            <img className="task-list__icon" src={deleteIcon} />
+                        </button>
                     </div>
                 ))
             ) : (

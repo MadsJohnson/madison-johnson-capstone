@@ -1,8 +1,15 @@
-.homepage  {
+@import '../../Styles/Partials/mixins';
+@import'../../Styles/Partials/variables';
 
+.homepage  {
     display: flex;
     justify-content: center;
     margin-top: 100px;
+
+    @include desktop {
+        margin: 75px 75px;
+        justify-content: flex-end;
+    }
 
     &__button {
         background-color: #dbe1f4;

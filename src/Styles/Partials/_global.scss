@@ -1,7 +1,7 @@
 @import './mixins';
 
 h1  {
-    color: $dark-blue-fonts;
+    color: $light-purple;
 
     @include tablet {
         font-size: 48px;
@@ -16,7 +16,7 @@ h1  {
 h2 {
     margin: 0;
     text-align: center;
-    color: $dark-blue-fonts;
+    color: $dark-purple;
     padding: 8px;
 
     @include tablet {

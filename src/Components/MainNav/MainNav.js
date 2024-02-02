@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import './MainNav.scss';
 import YearNav from '../YearNav/YearNav';
+import calendar from '../../Assets/Icons/chevron-icon.svg';
 
 const MainNav = () => {
     const navigate = useNavigate();
@@ -26,8 +27,10 @@ const MainNav = () => {
     return (
         <>
             <div className='main-nav'>
+                <button className='main-nav__icon-button' onClick={handleToggleYearNav}>
+                    <img src={calendar} className='main-nav__icon' />
+                </button>
                 <button className='main-nav__button' onClick={goToToday}>Go to today</button>
-                <button className='main-nav__button' onClick={handleToggleYearNav}>Calendar</button>
                 <button className='main-nav__button' onClick={handleLogout}>Logout</button>
             </div>
             {showYearNav && (

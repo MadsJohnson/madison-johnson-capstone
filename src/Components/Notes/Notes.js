@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Notes.scss';
+import writingIcon from '../../Assets/Icons/writing-icon.svg';
 
 const Notes = ({notesData, date, baseUrl}) => {
 

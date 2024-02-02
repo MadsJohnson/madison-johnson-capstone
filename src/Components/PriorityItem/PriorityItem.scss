@@ -1,13 +1,25 @@
+@import '../../Styles/Partials/variables.scss';
+@import '../../Styles/Partials/mixins';
+
 .task-list__container {
+    width: 95%;
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
 }
 
 .task-list__item {
     width: 95%;
-    padding: 0 8px 8px 8px;
+    padding:8px;
     display: flex;
     align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 4px 0;
+    transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translate(-2px, -2px); 
+        }
 
     @include tablet {
         padding: 8px;
@@ -24,7 +36,7 @@
 
 }
 
-.task-list__item--input {
+.task-list_item--input {
     @include inputTextStyles;
     width: 100%;
     border: none;
@@ -33,19 +45,47 @@
 
 }
 
-.task-list__item--input:focus {
-    outline: 1px solid $dark-blue-fonts;
+.task-list__item--input-container {
+    width: 100%;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 50%;
+        left: 0;
+        right: 0;
+        height: 50%;  // Adjust as needed
+        border-bottom: 1px solid rgba($dark-purple, 0.5);
+        transform: scaleX(0);  // Initial state, hidden line
+        transition: transform 0.3s ease;
+    }
+
+    // &:hover::after {
+    //     transform: scaleX(1);  // Display line on hover
+    // }
+
+    &.completed::after {
+        transform: scaleX(0.95); // Display line when completed
+        border-color: $dark-purple;  // Customize color if needed
+    }
+
+    // Add any additional styles you need
+}
+
+
+.task-list_item--input:focus {
+    outline: 0.5px solid $dark-purple;
 }
 
 .task-list__button {
-    background-color: #dbe1f4;
-    box-shadow: 4px 2px 2px rgba(128, 128, 128, 0.5);
-    color: #467ab5;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 16px;
-    cursor: pointer;
-    height: px;
+    background: none;
+        // box-shadow: 4px 2px 2px rgba(128, 128, 128, 0.5);
+        border: none; 
+        cursor: pointer;
 
+}
+
+.task-list__icon {
+    height: 12px;
 }

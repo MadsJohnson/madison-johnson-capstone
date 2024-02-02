@@ -2,6 +2,8 @@ import './Priorities.scss';
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import PriorityItem from '../PriorityItem/PriorityItem';
+import addIcon from '../../Assets/Icons/add.svg'
+import deleteIcon from '../../Assets/Icons/delete.svg'
 
 const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
   const [showInput, setShowInput] = useState(false);
@@ -26,14 +28,14 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
   const handleInputChange = (value) => {
     setUserInput(value);
     clearTimeout(timeoutRef.current);
-  
+
     // Set a new timeout to call postPriorityItem after 2000 milliseconds (2 seconds)
     timeoutRef.current = setTimeout(() => {
       postPriorityItem();
     }, 3000);
   };
 
-  
+
 
   const handleToggle = () => {
     setCompleted(!completed);
@@ -76,24 +78,30 @@ const Priorities = ({ fetchPrioritiesData, prioritiesData, baseUrl, date }) => {
     <div className="task-list">
       <div className='task-list__title-container'>
         <h2 className="task-list__title">Priorities</h2>
-        <button className="task-list__button" onClick={handleAddPriority}>+</button>
+        <button className="task-list__button" onClick={handleAddPriority}>
+          <img className="task-list__icon" src={addIcon} />
+        </button>
       </div>
-      {showInput && (
-        <div className="task-list__item">
-          <input
-            type="checkbox"
-            className="task-list__item--radial-toggle"
-            onClick={handleToggle}
-            checked={completed}
-          />
-          <input
-            className="task-list__item--input"
-            onChange={(e) => handleInputChange(e.target.value)}
-          />
-          <button className="task-list__button" onClick={handleClose}>-</button>
-        </div>
-      )}
-      <PriorityItem fetchPrioritiesData={fetchPrioritiesData} baseUrl={baseUrl} prioritiesData={prioritiesData}date={date} />
+      <div className='task-list__container'>
+        {showInput && (
+          <div className="task-list__item">
+            <input
+              type="checkbox"
+              className="task-list__item--radial-toggle"
+              onClick={handleToggle}
+              checked={completed}
+            />
+            <input
+              className="task-list__item--input"
+              onChange={(e) => handleInputChange(e.target.value)}
+            />
+            <button className="task-list__button" onClick={handleClose}>
+              <img className="task-list__icon" src={deleteIcon} />
+            </button>
+          </div>
+        )}
+      </div>
+      <PriorityItem fetchPrioritiesData={fetchPrioritiesData} baseUrl={baseUrl} prioritiesData={prioritiesData} date={date} />
     </div>
   );
 };
