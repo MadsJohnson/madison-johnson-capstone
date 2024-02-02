@@ -1,8 +1,9 @@
 @import '../../Styles/Partials/variables';
 @import '../../Styles/Partials/mixins';
 .notes {
-    border: 1px solid $dark-blue-fonts;
-    background-color: white;
+    color: $dark-purple;
+    background-color: rgba($light-purple, 0.8);
+    border-radius: 5px;
     width: 91%;
     margin: 16px;
 
@@ -16,6 +17,7 @@
 
     &__text-input {
         width: 90%;
+        background-color: transparent;
         height: 190px;
         border: none;
         margin: 0 16px 16px 16px;

@@ -1,9 +1,8 @@
 import './MainPage.scss'
-import Chevron from '../../Assets/Icons/chevron_right-24px.svg'
-import MonthNav from '../../Components/ MonthNav/MonthNav';
+// import Chevron from '../../Assets/Icons/chevron.svg'
 import React, { useEffect, useState } from 'react';
 import { fetchUserProfile } from '../../utils';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import MainNav from '../../Components/MainNav/MainNav';
 
 
@@ -49,6 +48,7 @@ function MainPage() {
 
   return (
     <div className='mainpage'> {
+
       isLoading ? (
         <h1>Loading...</h1>
       ) : (
@@ -56,9 +56,9 @@ function MainPage() {
           <MainNav />
           <div className='mainpage__planner'>
             <div className='mainpage__planner--cover'>
-              <Link to="/day/2024-01-01" className='mainpage__planner--page-turn-icon--container'>
+              {/* <Link to="/day/2024-01-01" className='mainpage__planner--page-turn-icon--container'>
                 <img src={Chevron} className='mainpage__planner--page-turn-icon' alt='page turn icon' />
-              </Link>
+              </Link> */}
               <div className='mainpage__planner--title--container'>
                 <div className='mainpage__planner--title--subcontainer'>
                   <h1 className='mainpage__planner--title'>2024</h1>
@@ -67,7 +67,6 @@ function MainPage() {
 
               </div>
             </div>
-            <MonthNav />
           </div>
         </>
       )

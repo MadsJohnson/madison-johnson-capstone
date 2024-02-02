@@ -2,26 +2,63 @@
 @import '../../Styles/Partials/mixins';
 
 .task-list {
-    color: $dark-blue-fonts;
-    border: 1px solid $dark-blue-fonts;
-    background-color: white;
+    color: $dark-purple;
+    background-color: rgba($light-purple, 0.8);
+    border-radius: 5px;
     width: 91%;
     margin: 16px;
     padding: 0;
-
-    @include tablet {
-        height: 255px;
-    }
+    height: 255px;
+    max-height: 255px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     @include desktop {
-        height: 170px;
+        max-height: 170px;
     }
 
+    &__title-container {
+        width: 90%;
+        margin: 0 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    &__title {
+        margin-bottom: 0;
+        padding: 8px 0;
+    }
+
+    &__button {
+        display: flex;
+        background: none;
+        border: none; 
+        cursor: pointer;
+        align-self: center;
+    }
+
+    &__icon {
+        height: 15px;
+    }
+
+
     &__item {
-        width: 95%;
-        padding: 0 8px 8px 8px;
+        width: 80%;
+        padding: 8px;
         display: flex;
         align-items: center;
+        background-color: rgba($medium-purple, 0.5);
+        border-radius: 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translate(-2px, -2px); 
+        }
 
         @include tablet {
             padding: 8px;
@@ -41,11 +78,13 @@
             width: 100%;
             border: none;
             background: none;
-            margin-left: 8px;
+            margin:0 8px;
+            height: 100%;
+    
         }
 
         &--input:focus {
-            outline: 1px solid $dark-blue-fonts;
+            outline: 0.5px solid $dark-purple;
         }
     }
 

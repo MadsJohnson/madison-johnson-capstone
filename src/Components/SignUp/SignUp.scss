@@ -1,20 +1,36 @@
+@import '../../Styles/Partials/mixins';
+@import'../../Styles/Partials/variables';
+
+
 .signupPage {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 40vh;
     margin: 50px;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba($light-purple,0.8);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    box-shadow: 0 8px 10px rgba(black, 0.9);
+    width: 300px;
+    color: $dark-purple;
+
+    @include tablet {
+        height: 40vh;
+        width: 300px;
+    }
+
+    @include desktop {
+        height: 60vh;
+        align-self: right;
+    }
 
     &__title {
         font-size: 24px;
         margin-bottom: 20px;
         text-align: center;
+        color: $dark-purple;
     }
 
     &__form {
@@ -46,6 +62,11 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+
+            &:focus {
+                outline: 0.5px solid $dark-purple;
+            }
         }
 
     }
@@ -53,6 +74,7 @@
 
     &__copy {
         text-align: center;
+        font-weight: 500;
     }
 
     &__signup {
@@ -65,13 +87,13 @@
         border: none;
         border-radius: 5px;
         width: 100%;
-        height: 30px;
+        height: 35px;
         margin: 20px  0;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 6px 8px rgba(black, 0.3);
     }
 
     &__button:hover {
-        background-color: #0056b3;
+        background-color: $medium-purple;
     }
 
 }
