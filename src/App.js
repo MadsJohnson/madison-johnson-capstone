@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PrivateRoute from '../src/Components/PrivateRoute/PrivateRoute';
 import './App.scss';
-import MainPage from './Pages/MainPage/MainPage';
 import DayPage from './Pages/DayPage/DayPage'
 import HomePage from './Pages/HomePage/HomePage';
-import Login from './Components/Login/Login';
-import SignUp from './Components/SignUp/SignUp';
+import SignUpPage from './Pages/SignUpPage/SignUpPage';
 
 function App() {
 
@@ -16,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup" element={<SignUpPage />} />
           {/* <Route exact path='/mainpage' element={<PrivateRoute element={<MainPage/>}/> }/> */}
           <Route exact path='/day/:date' element={<PrivateRoute element={<DayPage/>}/> }/>
         </Routes>

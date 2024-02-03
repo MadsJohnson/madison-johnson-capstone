@@ -25,7 +25,12 @@
     }
 
     @include desktop  {
-        max-height: 567px;
+        max-height: 581px;
+    }
+
+    &__title {
+        text-align: start;
+        position: sticky;
     }
 
     &__container {

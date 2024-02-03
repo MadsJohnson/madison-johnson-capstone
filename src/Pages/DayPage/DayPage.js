@@ -2,7 +2,6 @@ import { useParams, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Schedule from '../../Components/Schedule/Schedule.js';
 import './DayPage.scss';
-import Priorities from '../../Components/Priorities/Priorities.js';
 import ToDoList from '../../Components/ToDoList/ToDoList.js';
 import Notes from '../../Components/Notes/Notes.js'
 import { baseUrl } from '../../utils.js';
@@ -16,7 +15,7 @@ function DayPage() {
   const token = sessionStorage.token
   const [agendaData, setAgendaData] = useState(null);
   const [todoData, setTodoData] = useState(null);
-  const [prioritiesData, setPrioritiesData] = useState(null);
+  // const [prioritiesData, setPrioritiesData] = useState(null);
   const [notesData, setNotesData] = useState(null) 
 
   const fetchAgendaData = () => {
@@ -34,20 +33,20 @@ function DayPage() {
       });
   };
 
-  const fetchPrioritiesData = () => {
-    axios.get(`${baseUrl}/priorities?date=${date}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        setPrioritiesData(response.data);
+  // const fetchPrioritiesData = () => {
+  //   axios.get(`${baseUrl}/priorities?date=${date}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       setPrioritiesData(response.data);
 
-      })
-      .catch((error) => {
-        console.log("Error fetching agenda data:", error);
-      });
-  };
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error fetching agenda data:", error);
+  //     });
+  // };
 
   const fetchToDoData = () => {
     axios.get(`${baseUrl}/todo?date=${date}`, {
@@ -60,7 +59,7 @@ function DayPage() {
 
       })
       .catch((error) => {
-        console.log("Error fetching agenda data:", error);
+        console.log("Error fetching todo data:", error);
       });
   };
 
@@ -82,7 +81,7 @@ function DayPage() {
 
   useEffect(() => {
     fetchAgendaData();
-    fetchPrioritiesData();
+    // fetchPrioritiesData();
     fetchToDoData();
     fetchNotesData();
 
@@ -91,7 +90,7 @@ function DayPage() {
   }, [date]);
 
   console.log("agenda data", agendaData)
-  console.log("priorties data", prioritiesData)
+  // console.log("priorties data", prioritiesData)
   console.log("todo data", todoData)
   console.log("notes data", notesData)
   console.log(token)
@@ -142,17 +141,11 @@ function DayPage() {
               <div className='daypage__planner--cover' key={index}>
                 <h1 className='daypage__planner--title'>{formatDateForDisplay(dateObject)}</h1>
                 <div className="daypage__content-container">
-                  <div className="daypage__priorities--mobile">
-                    <Priorities fetchPrioritiesData={fetchPrioritiesData} fetchToDoData={fetchToDoData} prioritiesData={prioritiesData} date={date} baseUrl={baseUrl} />
-                  </div>
                   <div className="daypage__schedule">
                     <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl} />
                   </div>
                   <div className="daypage__subcontainer">
-                    <div className="daypage__priorities--tablet">
-                      <Priorities fetchPrioritiesData={fetchPrioritiesData} prioritiesData={prioritiesData} date={date} baseUrl={baseUrl} />
-                    </div>
-                    <ToDoList todoData={todoData} date={date} baseUrl={baseUrl} />
+                    <ToDoList todoData={todoData} fetchToDoData={fetchToDoData} date={date} baseUrl={baseUrl} />
                     <Notes notesData={notesData} date={date} baseUrl={baseUrl} />
                   </div>
 

@@ -1,5 +1,6 @@
 @import '../../Styles/Partials/variables';
 @import '../../Styles/Partials/mixins';
+
 .notes {
     color: $dark-purple;
     background-color: rgba($light-purple, 0.8);
@@ -8,24 +9,34 @@
     margin: 16px;
 
     @include tablet {
-        height: 290px;
+        height: 315px;
     }
 
     @include desktop {
-        height: 119px;
+        height: 250px;
+    }
+    &__title {
+        text-align: start;
+
     }
 
     &__text-input {
-        width: 90%;
+        width: 95%;
         background-color: transparent;
         height: 190px;
         border: none;
         margin: 0 16px 16px 16px;
         @include inputTextStyles;
 
+        @include tablet {
+            width:90%;
+            height: 230px;
+        }
+
         @include desktop {
             margin: 0 8px 0 8px;
             height: 75px;
+            height: 200px;
         }
     }
 

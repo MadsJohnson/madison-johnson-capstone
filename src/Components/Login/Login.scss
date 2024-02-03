@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 40vh;
+    height:  500px;
     margin: 50px;
     background-color: rgba($light-purple,0.8);
     padding: 20px;
@@ -17,12 +17,8 @@
     color: $dark-purple;
 
     @include tablet {
-        height: 40vh;
+        height: 500px;
         width: 300px;
-    }
-
-    @include desktop {
-        height: 60vh;
     }
 
     &__title {
