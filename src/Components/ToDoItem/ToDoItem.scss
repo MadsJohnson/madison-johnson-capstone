@@ -36,7 +36,7 @@
 
 }
 
-.task-list_item--input {
+.task-list__item--input {
     @include inputTextStyles;
     width: 100%;
     border: none;
@@ -46,8 +46,10 @@
 }
 
 .task-list__item--input-container {
-    width: 100%;
     position: relative;
+    width: 85%;
+    margin-right: 8px;
+    height: 100%;
 
     &::after {
         content: '';
@@ -55,26 +57,21 @@
         bottom: 50%;
         left: 0;
         right: 0;
-        height: 50%;  // Adjust as needed
+        height: 50%;  
         border-bottom: 1px solid rgba($dark-purple, 0.5);
-        transform: scaleX(0);  // Initial state, hidden line
+        transform: scaleX(0);  
         transition: transform 0.3s ease;
     }
 
-    // &:hover::after {
-    //     transform: scaleX(1);  // Display line on hover
-    // }
-
     &.completed::after {
-        transform: scaleX(0.95); // Display line when completed
-        border-color: $dark-purple;  // Customize color if needed
+        transform: scaleX(0.95); 
+        border-color: $dark-purple;  
     }
-
-    // Add any additional styles you need
 }
 
 
-.task-list_item--input:focus {
+
+.task-list__item--input:focus {
     outline: 0.5px solid $dark-purple;
 }
 
@@ -83,6 +80,7 @@
         // box-shadow: 4px 2px 2px rgba(128, 128, 128, 0.5);
         border: none; 
         cursor: pointer;
+        margin-left: 8px; 
 
 }
 

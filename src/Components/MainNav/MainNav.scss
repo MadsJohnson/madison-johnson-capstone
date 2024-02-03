@@ -18,6 +18,13 @@
     height: 30px;
     margin: 10px 15px;
     z-index: 2000;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+
+
+    &:hover {
+      transform: translate(-2px, -2px);
+    }
 
 
     @include desktop {
@@ -35,6 +42,7 @@
     width: 50px;
     padding: 6px 0;
     transition: transform 0.3s ease;
+
 
     &:hover {
       transform: translate(-2px, -2px);
