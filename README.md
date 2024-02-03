@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+
+# Daily Planner App
+
+Welcome to the Daily Planner App! This simple yet effective app helps you organize your daily tasks and schedule efficiently.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- *Task Management:* Easily add, edit, and delete tasks for each day.
+- *Date Selection:* Navigate between different dates to plan your schedule for the day.
+- *User-Friendly Interface:* Intuitive design for a seamless planning experience.
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Make sure you have the following installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Node.js**
+- **npm (Node Package Manager)**
+- **MySql**
 
-### `npm test`
+## MySQL Database Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Daily Planner App uses a MySQL database to store user data. Follow the steps below to set up the database and run migrations:
 
-### `npm run build`
+1. Install MySQL on your machine if not already installed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Create a new MySQL database for the Daily Planner App.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Obtain the MySQL connection details (host, username, password, database name).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Navigate to the project directory in your terminal.
 
-### `npm run eject`
+5. Run the following commands to set up the database and run migrations:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Install necessary dependencies
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Run database migrations
+npm run migrate
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Create a .env file in the root of your project and add the following
+DB_HOST=your_mysql_host
+DB_USER=your_mysql_user
+DB_PASSWORD=your_mysql_password
+DB_DATABASE=your_mysql_database
 
-## Learn More
+Replace your_mysql_host, your_mysql_user, your_mysql_password, and your_mysql_database with your actual MySQL connection details.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Getting Started
 
-### Code Splitting
+1. Clone the repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+git clone https://github.com/your-username/daily-planner-app.git
 
-### Analyzing the Bundle Size
+2. Insteal Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+cd daily-planner-app and instal dependencies (npm instal)
 
-### Making a Progressive Web App
+3. Usage
+Open your browser and navigate to http://localhost:3000.
+Start planning your day!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Technologies Used
 
-### Advanced Configuration
+- **React:** A JavaScript library for building user interfaces.
+- **Axios:** A promise-based HTTP client for making API requests.
+- **Knex.js:** A SQL query builder for Node.js that is used for interacting with MySQL databases in the backend of the Daily Planner App. Knex provides a clean and flexible syntax for building queries and managing database migrations.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+### Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Some key dependencies used:
 
-### `npm run build` fails to minify
+- **react-router-dom:** For handling navigation and routing in a React app.
+- **useState and useRef hooks:** Used for managing state and creating references within React components.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For a complete list of dependencies, please refer to the `package.json` file.
+
+## License
+This project is licensed under the MIT License.
+
+## Acknowledgments
+Special thanks to Brainstation TAs and classmates for the guidance and support during the development of this app.
+
+Happy planning!
+
