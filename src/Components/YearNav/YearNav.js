@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './YearNav.scss';
 import { useNavigate } from 'react-router-dom';
+import backArrow from '../../Assets/Icons/back-arrow.svg';
+import forwardArrow from '../../Assets/Icons/forward-arrow.svg';
 
-const YearNav = ({setShowYearNav, date}) => {
+const YearNav = ({ setShowYearNav, date }) => {
     const navigate = useNavigate();
-    const currentYear = 2024; 
+    const currentYear = 2024;
     const months = Array.from({ length: 12 }, (_, monthIndex) => monthIndex + 1);
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
@@ -52,14 +54,18 @@ const YearNav = ({setShowYearNav, date}) => {
 
         setShowYearNav(false);
 
-      };
+    };
 
     return (
         <div className="year-at-a-glance">
             <div className="month-navigation">
-                <button className="button" onClick={handlePrevMonth}>&lt;</button>
+                <button className="button" onClick={handlePrevMonth}>
+                    <img className='button-icon-right' src={backArrow}/>
+                </button>
                 <h3>{monthNames[selectedMonth - 1]}</h3>
-                <button  className="button" onClick={handleNextMonth}>&gt;</button>
+                <button className="button" onClick={handleNextMonth}>
+                    <img  className='button-icon-left' src={forwardArrow}/>
+                </button>
             </div>
             <div className="calendar-grid">
                 {dates.map((monthData, index) => (

@@ -91,7 +91,7 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
 
         timeoutRef.current = setTimeout(() => {
             updateTodoItem(task_id, userInputs[task_id] || '', newCompletionStatus);
-        }, 2000);
+        }, 1000);
     };
 
     const handleTextChange = (task_id, newTaskValue) => {
@@ -104,7 +104,7 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
 
         timeoutRef.current = setTimeout(() => {
             updateTodoItem(task_id, newTaskValue, completedStatus[task_id] || '');
-        }, 3000);
+        }, 1000);
     };
 
     const updateTodoItem = (task_id, newTaskValue, newCompletionStatus) => {

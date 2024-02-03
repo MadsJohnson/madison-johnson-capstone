@@ -20,13 +20,13 @@
 
 }
 
-@mixin radialToggleButtonStyles($size: 20px, $uncheckedSize: 12px, $color: $dark-purple) {
+@mixin radialToggleButtonStyles($size: 20px, $uncheckedSize: 20px, $color: $dark-purple) {
     appearance: none;
     position: relative;
     border: 0.5px solid $dark-purple;
     border-radius: 50%;
     height: 20px;
-    width: 24px;
+    width: 20px;
     margin: 0;
     box-sizing: border-box;
 

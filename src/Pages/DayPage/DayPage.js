@@ -17,6 +17,7 @@ function DayPage() {
   const [todoData, setTodoData] = useState(null);
   // const [prioritiesData, setPrioritiesData] = useState(null);
   const [notesData, setNotesData] = useState(null) 
+  const today = new Date().toISOString().split('T')[0];
 
   const fetchAgendaData = () => {
     axios.get(`${baseUrl}/agenda?date=${date}`, {
@@ -127,7 +128,7 @@ function DayPage() {
   const isValidDate = dates.some(dateObject => formatDateForComparison(dateObject.toISOString()).toISOString() === new Date(date).toISOString());
 
   if (!isValidDate) {
-    return <Navigate to="/mainpage" />;
+    return <Navigate to={`/day/${today}`} />;
   }
 
   return (
@@ -139,10 +140,10 @@ function DayPage() {
           if (formattedDate.toISOString() === new Date(date).toISOString()) {
             return (
               <div className='daypage__planner--cover' key={index}>
-                <h1 className='daypage__planner--title'>{formatDateForDisplay(dateObject)}</h1>
+                {/* <h1 className='daypage__planner--title'>{formatDateForDisplay(dateObject)}</h1> */}
                 <div className="daypage__content-container">
                   <div className="daypage__schedule">
-                    <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl} />
+                    <Schedule currentDate={formattedDate} agendaData={agendaData} date={date} baseUrl={baseUrl} />
                   </div>
                   <div className="daypage__subcontainer">
                     <ToDoList todoData={todoData} fetchToDoData={fetchToDoData} date={date} baseUrl={baseUrl} />

@@ -2,7 +2,7 @@ import './Schedule.scss';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-const Schedule = ({ agendaData, date, baseUrl }) => {
+const Schedule = ({ currentDate, agendaData, date, baseUrl }) => {
     const initialSchedule = {
         '6:00': '',
         '7:00': '',
@@ -24,9 +24,8 @@ const Schedule = ({ agendaData, date, baseUrl }) => {
         '23:00': ''
     };
 
-    const [schedule, setSchedule] = useState(initialSchedule);
 
-    // Use useRef to keep track of the timer
+    const [schedule, setSchedule] = useState(initialSchedule);
     const timerRef = useRef(null);
 
     useEffect(() => {
@@ -128,10 +127,15 @@ const Schedule = ({ agendaData, date, baseUrl }) => {
             });
     };
     
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
 
     return (
         <div className='schedule'>
-          <h2 className='schedule__title'>Schedule</h2>
+          <h2 className='schedule__title'> {formattedDate}</h2>
           <table className='schedule__container'>
             <tbody className='schedule__subcontainer'>
               {Object.entries(initialSchedule).map(([time, task]) => (

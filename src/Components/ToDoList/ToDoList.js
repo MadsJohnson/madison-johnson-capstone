@@ -32,7 +32,7 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
     // Set a new timeout to call postTodoItem after 2000 milliseconds (2 seconds)
     timeoutRef.current = setTimeout(() => {
       postTodoItem();
-    }, 3000);
+    }, 1000);
   };
 
 
@@ -91,10 +91,12 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
               onClick={handleToggle}
               checked={completed}
             />
-            <input
-              className="task-list__item--input"
-              onChange={(e) => handleInputChange(e.target.value)}
-            />
+            <div className="task-list__item--input-container">
+              <input
+                className="task-list__item--input"
+                onChange={(e) => handleInputChange(e.target.value)}
+              />
+            </div>
             <button className="task-list__button" onClick={handleClose}>
               <img className="task-list__icon" src={deleteIcon} />
             </button>

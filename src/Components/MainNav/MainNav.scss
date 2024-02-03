@@ -3,44 +3,58 @@
 .main-nav {
   display: flex;
   position: relative;
-  background-color: $medium-purple;
+  // background-color:$medium-purple;
+  // background: linear-gradient(to bottom,$medium-purple, $medium-purple, transparent);
+  background: linear-gradient(to bottom, $medium-purple, rgba(128, 99, 143, 0));
   width: 100%;
+  height: 100px;
   justify-content: center;
   align-items: center;
-  color: $dark-purple;
 
 
   &__button {
     background-color: $light-purple;
+    color: $dark-purple;
     border: none;
     border-radius: 20px;
     width: 130px;
     height: 30px;
+    text-align: center;
     margin: 10px 15px;
     z-index: 2000;
     transition: transform 0.3s ease;
     box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
-
+    transition: transform 0.3s ease;
 
     &:hover {
       transform: translate(-2px, -2px);
+      background: linear-gradient(to left, $light-purple, $medium-purple, $medium-purple, $light-purple);
+      background-size: 200% 100%;
+      animation: shine 3s linear infinite;
+
+      @keyframes shine {
+        to {
+          background-position: 200% 0;
+        }
+      }
     }
 
-
-    @include desktop {
-      margin-top: 24px;
-    }
   }
 
   &__icon-button {
     background: none;
     border: none;
     z-index: 2000;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
   }
 
   &__icon {
     width: 50px;
-    padding: 6px 0;
+    padding: 12px;
     transition: transform 0.3s ease;
 
 
@@ -61,15 +75,4 @@
     cursor: pointer;
   }
 
-  @include tablet {
-    &__button {
-      width: 10%;
-      margin: 10px;
-    }
-
-    &__icon-button,
-    &__button {
-      text-align: center;
-    }
-  }
 }

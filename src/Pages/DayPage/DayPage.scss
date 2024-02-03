@@ -10,12 +10,14 @@
   height: 100%;
   backdrop-filter: blur(10px);
 
+
   &__planner {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    max-width: 1200px; /* Adjust max-width as needed */
+    max-width: 1200px;
+    /* Adjust max-width as needed */
 
     &--cover {
       width: 100%;
@@ -28,9 +30,19 @@
     &--title {
       margin: 24px 16px;
       text-align: center;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      /* Add a subtle text shadow */
+      transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+        color: $medium-purple; 
+        /* Add a slight scale effect on hover */
+      }
 
       @include tablet {
-        margin: 64px 24px;
+        margin: 24px;
       }
 
       @include desktop {
@@ -40,8 +52,10 @@
   }
 
   &__content-container {
+
+    margin-top: 16px;
     @include tablet {
-      margin: 0 24px 64px 24px;
+      margin: 48px 24px 64px 24px;
       display: flex;
       flex-direction: row;
 
@@ -52,6 +66,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @include tablet {
       width: 100%;
     }
@@ -61,6 +76,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     @include tablet {
       width: 100%;
     }

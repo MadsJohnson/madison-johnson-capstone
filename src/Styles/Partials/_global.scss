@@ -4,7 +4,7 @@ h1  {
     color: $light-purple;
 
     @include tablet {
-        font-size: 48px;
+        font-size: 36px;
     }
 
     @include desktop {
@@ -17,7 +17,7 @@ h2 {
     margin: 0;
     text-align: center;
     color: $dark-purple;
-    padding: 8px;
+    padding: 8px 16px;
 
     @include tablet {
         font-size: 24px;
@@ -25,7 +25,7 @@ h2 {
     }
 
     @include desktop {
-        font-size: 18px;
+        font-size: 24px;
         padding: 8px;
     }
 }
