@@ -53,9 +53,33 @@
     text-align: center;
     margin: 2px;
     width: calc(14.28% - 4px);
-}
+    position: relative; 
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
 
 .button {
     border: none;
     margin: 16px;
+    background: none;
+}
+
+.button-icon-right {
+    height:30px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateX(-5px);
+      }
+}
+
+.button-icon-left {
+    height:30px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateX(5px);
+      }
 }

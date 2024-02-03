@@ -9,7 +9,7 @@
     justify-content: center;
     height:  500px;
     margin: 50px;
-    background-color: rgba($light-purple,0.8);
+    background-color: rgba($light-purple,0.6);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 8px 10px rgba(black, 0.9);
@@ -59,8 +59,24 @@
             box-sizing: border-box;
             box-shadow: 0 6px 8px rgba(black, 0.3);
 
+            &:hover {
+                transform: translate(-2px, -2px);
+                background: linear-gradient(to left, $light-purple,$medium-purple, $medium-purple, $light-purple);
+                background-size: 200% 100%;
+                animation: shine 6s linear infinite;
+              
+                @keyframes shine {
+                  to {
+                    background-position: 200% 0;
+                  }
+                }
+              
+                border-radius: 5px;
+                box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+              }
+
             &:focus {
-                outline: 0.5px solid $dark-purple;
+                outline: none;
             }
         }
 
@@ -85,10 +101,24 @@
         height: 35px;
         margin: 20px  0;
         box-shadow: 0 6px 8px rgba(black, 0.3);
+
+        &:hover {
+            transform: translate(-2px, -2px);
+            background: linear-gradient(to left, $light-purple,$medium-purple, $medium-purple, $light-purple);
+            background-size: 200% 100%;
+            animation: shine 6s linear infinite;
+          
+            @keyframes shine {
+              to {
+                background-position: 200% 0;
+              }
+            }
+          
+            border-radius: 5px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+          }
     }
 
-    &__button:hover {
-        background-color: $medium-purple;
-    }
+   
 
 }

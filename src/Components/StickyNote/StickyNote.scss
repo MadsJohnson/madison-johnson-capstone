@@ -1,0 +1,75 @@
+@import '../../Styles/Partials/variables.scss';
+@import '../../Styles/Partials/mixins';
+
+.sticky-note-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+.sticky-note {
+    position:fixed;
+    top:75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 600px;
+    background-color: $medium-purple;
+    border-radius: 3px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+
+    &__title {
+        margin: 16px;
+        background-color: none;
+        margin-bottom: 10px;
+
+        &--input {
+            width: 95%;
+            padding: 5px;
+            border: none;
+            background-color: transparent;
+            color: $dark-purple;
+            font-size: 16px;
+        }
+
+        &--input:focus {
+            outline: 0.5px solid $dark-purple;
+        }
+    }
+
+    &__close-button{
+        background: none;
+        border: none;
+    }
+
+    &__close-icon {
+        height: 20px;
+    }
+
+    &__content {
+        margin: 16px;
+        height: 75%;
+
+        textarea {
+            width: 95%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            color: $dark-purple;
+            resize: none;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            outline: 0.5px solid $dark-purple;
+        }
+    }
+}

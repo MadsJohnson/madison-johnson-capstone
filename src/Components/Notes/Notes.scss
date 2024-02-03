@@ -8,6 +8,22 @@
     width: 91%;
     margin: 16px;
 
+    &:hover {
+        transform: translate(-2px, -2px);
+        background: linear-gradient(to left, $light-purple,$medium-purple, $medium-purple, $light-purple);
+        background-size: 200% 100%;
+        animation: shine 9s linear infinite;
+      
+        @keyframes shine {
+          to {
+            background-position: 200% 0;
+          }
+        }
+      
+        border-radius: 5px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      }
+
     @include tablet {
         height: 315px;
     }
@@ -17,24 +33,31 @@
     }
     &__title {
         text-align: start;
+        margin: 6px 8px;
+
+        @include desktop {
+            margin-left:12px;
+        }
 
     }
 
     &__text-input {
         width: 95%;
+        font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         background-color: transparent;
         height: 190px;
         border: none;
-        margin: 0 16px 16px 16px;
+        margin: 0 18px 16px 22px;
         @include inputTextStyles;
 
         @include tablet {
             width:90%;
             height: 230px;
+            margin: 0 16px 0 24px;
         }
 
         @include desktop {
-            margin: 0 8px 0 8px;
+            margin: 0 16px 0 20px;
             height: 75px;
             height: 200px;
         }
