@@ -20,7 +20,7 @@ const Signup = () => {
 
         if (!username || !password || !name) {
             setLoading(false);
-            // Handle validation error
+            setErrorMessage("Please fill in all required fields.");
             return;
         }
 
@@ -28,11 +28,13 @@ const Signup = () => {
             await axios.post(signupUrl, { username, password, name });
 
             setLoading(false);
-            // Redirect to Login page
+            
+            // Redirect to Login page after succesfull sign up
             navigate('/');
         } catch (error) {
             console.error('Signup error:', error);
             setLoading(false);
+            setIsSignupError(true);
             setErrorMessage(error.response?.data?.error?.message || 'Unknown error occurred');
         }
     };

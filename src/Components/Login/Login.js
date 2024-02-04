@@ -6,8 +6,6 @@ import './Login.scss'
 
 const Login = () => {
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [IsSignedUp, setIsSignedUp] = useState(false)
     const [isLoginError, setIsLoginError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -21,7 +19,7 @@ const Login = () => {
 
         if (!username || !password) {
             setLoading(false);
-            // Handle validation error
+            setErrorMessage("Please fill in all required fields.");
             return;
         }
 
@@ -34,18 +32,17 @@ const Login = () => {
             const profileResponse = await fetchUserProfile(token);
             const userProfile = profileResponse.data;
 
-            // Set user profile in sessionStorage
+            // Set user profile and token in sessionStorage
             sessionStorage.setItem('userProfile', JSON.stringify(userProfile));
-
             sessionStorage.setItem('token', JSON.stringify(token));
 
-            setIsLoggedIn(true);
             setIsLoginError(false);
             setErrorMessage("");
             setLoading(false);
 
-            // Redirect to MainPage
+            // Redirect to MainPage (todays date) on login
             navigate(`/day/${getCurrentDate()}`);
+
         } catch (error) {
             console.error('Login error:', error);
             setLoading(false);
@@ -54,6 +51,7 @@ const Login = () => {
         }
     };
 
+    //get current date to use in navigate on login 
     const getCurrentDate = () => {
         const today = new Date();
         const year = today.getFullYear();

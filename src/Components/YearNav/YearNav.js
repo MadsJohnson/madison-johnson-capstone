@@ -1,78 +1,52 @@
-import React, { useState } from 'react';
 import './YearNav.scss';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import backArrow from '../../Assets/Icons/back-arrow.svg';
 import forwardArrow from '../../Assets/Icons/forward-arrow.svg';
+import { generateDates } from '../../utils'
 
 const YearNav = ({ setShowYearNav, date }) => {
     const navigate = useNavigate();
-    const currentYear = 2024;
-    const months = Array.from({ length: 12 }, (_, monthIndex) => monthIndex + 1);
-    const monthNames = [
-        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-
     const [selectedMonth, setSelectedMonth] = useState(1);
 
+    // navigate to previous or next month on click 
     const handlePrevMonth = () => {
         setSelectedMonth((prevMonth) => (prevMonth === 1 ? 12 : prevMonth - 1));
     };
-
     const handleNextMonth = () => {
         setSelectedMonth((prevMonth) => (prevMonth === 12 ? 1 : prevMonth + 1));
     };
 
-    const generateDates = () => {
-        const monthIndex = selectedMonth - 1;
-
-        return months.map((month, index) => {
-            const monthDates = [];
-            const daysInMonth = new Date(currentYear, month, 0).getDate();
-            const firstDay = new Date(currentYear, month - 1, 1).getDay(); // 0 for Sunday, 1 for Monday, etc.
-
-            // Add empty boxes for days before the first day of the month
-            for (let i = 0; i < firstDay; i++) {
-                monthDates.push({ day: null, date: null });
-            }
-
-            // Add days of the month
-            for (let day = 1; day <= daysInMonth; day++) {
-                const date = `${currentYear}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-                monthDates.push({ day, date });
-            }
-
-            return { month: monthNames[(monthIndex + index) % 12], dates: monthDates };
-        });
-    };
-
-
+    // generate dates for calendar
     const dates = generateDates();
+    const monthNames = dates.map((monthData) => monthData.month);
 
+    //navigat to daypage of selected date in calendar and close calendar nav
     const handleDateClick = (date) => {
-        const formattedDate = new Date(date).toISOString().split('T')[0];
         navigate(`/day/${date}`);
-
         setShowYearNav(false);
 
     };
 
     return (
         <div className="year-at-a-glance">
-            <div className="month-navigation">
-                <button className="button" onClick={handlePrevMonth}>
-                    <img className='button-icon-right' src={backArrow}/>
+            <div className="year-at-a-glance__container">
+                <button className="year-at-a-glance__button" onClick={handlePrevMonth}>
+                    <img className='year-at-a-glance__button--icon-right' src={backArrow}/>
                 </button>
                 <h3>{monthNames[selectedMonth - 1]}</h3>
-                <button className="button" onClick={handleNextMonth}>
-                    <img  className='button-icon-left' src={forwardArrow}/>
+                <button className="year-at-a-glance__button" onClick={handleNextMonth}>
+                    <img  className='year-at-a-glance__button--icon-left' src={forwardArrow}/>
                 </button>
             </div>
-            <div className="calendar-grid">
+            <div className="year-at-a-glance__calendar-grid">
+                {/* map tthe months  */}
                 {dates.map((monthData, index) => (
-                    <div key={index} className={`month ${index === selectedMonth - 1 ? 'visible' : 'hidden'}`}>
-                        <div className="week-container">
+                    <div key={index} className={`year-at-a-glance__month ${index === selectedMonth - 1 ? 'visible' : 'hidden'}`}>
+                        <div className="year-at-a-glance__week-container">
+                            {/* map the days inside of each month */}
                             {index === selectedMonth - 1 && monthData.dates.map((dayData, dayIndex) => (
-                                <div key={dayIndex} className="day" onClick={() => handleDateClick(dayData.date)}>
+                                <div key={dayIndex} className="year-at-a-glance__day" onClick={() => handleDateClick(dayData.date)}>
                                     {dayData.day !== null ? dayData.day : ''}
                                 </div>
                             ))}
