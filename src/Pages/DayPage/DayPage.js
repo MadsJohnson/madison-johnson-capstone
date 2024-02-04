@@ -98,10 +98,10 @@ function DayPage() {
 
 
 
-  const formatDateForDisplay = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
+  // const formatDateForDisplay = (dateString) => {
+  //   const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  //   return new Date(dateString).toLocaleDateString(undefined, options);
+  // };
 
   const formatDateForComparison = (dateString) => {
     const year = dateString.slice(0, 4);
@@ -143,7 +143,7 @@ function DayPage() {
                 {/* <h1 className='daypage__planner--title'>{formatDateForDisplay(dateObject)}</h1> */}
                 <div className="daypage__content-container">
                   <div className="daypage__schedule">
-                    <Schedule currentDate={formattedDate} agendaData={agendaData} date={date} baseUrl={baseUrl} />
+                    <Schedule agendaData={agendaData} date={date} baseUrl={baseUrl} />
                   </div>
                   <div className="daypage__subcontainer">
                     <ToDoList todoData={todoData} fetchToDoData={fetchToDoData} date={date} baseUrl={baseUrl} />

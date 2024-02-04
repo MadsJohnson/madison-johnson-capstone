@@ -16,6 +16,8 @@ export const fetchUserProfile = (token) => {
   });
 };
 
-
-
+export const formatDateForDisplay = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
 
