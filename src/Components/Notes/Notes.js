@@ -3,12 +3,12 @@ import axios from 'axios';
 import './Notes.scss';
 
 const Notes = ({notesData, date, baseUrl}) => {
-
     const [noteText, setNoteText] = useState('');
     const [noteId, setNoteId] = useState(null)
     const timerRef = useRef(null);
 
-
+    // when notes data changes, set the note text and note id states to first object in notesdata array
+    // if no notes data, data post an empty object to notesData array  
     useEffect(() => {
         if (notesData && notesData.length > 0) {
             setNoteText(notesData[0].note);
@@ -22,9 +22,6 @@ const Notes = ({notesData, date, baseUrl}) => {
         }
 
     }, [notesData]);
-
-    // console.log(noteText)
-    // console.log(noteId)
 
     const postNote = () => {
         const token = sessionStorage.token;
@@ -42,7 +39,7 @@ const Notes = ({notesData, date, baseUrl}) => {
         )
             .then(response => {
                 console.log('note posted successfully:', response.data);
-                // Set the note_id in the state
+                // Set the note_id in the state to assign id to note section
                 setNoteId(response.data.note_id);
             })
             .catch(error => {
@@ -73,11 +70,9 @@ const Notes = ({notesData, date, baseUrl}) => {
             });
     };
 
-
-
     useEffect(() => {
         if (noteText !== '' && noteId !== null) {
-            // Only initiate the putNote if noteText is not empty and noteId is not null
+            // Initiate the putNote function if noteText is not empty and noteId is not null 1 second after state has updated 
             if (timerRef.current) {
                 clearTimeout(timerRef.current);
             }
@@ -87,6 +82,7 @@ const Notes = ({notesData, date, baseUrl}) => {
         }
     }, [noteText, noteId]);
 
+    // set noteText state on user input 
     const handleInputChange = event => {
         setNoteText(prev => {
             const newText = event.target.value;

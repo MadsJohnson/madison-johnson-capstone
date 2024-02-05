@@ -9,77 +9,82 @@
     position: absolute;
     top: 10%;
     z-index: 1000;
-}
 
-.month-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 20px;
-    margin: 10px  0;
-}
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 20px;
+        margin: 10px 0;
 
-.calendar-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.month {
-    padding: 10px;
-    text-align: center;
-    box-sizing: border-box;
-    width: calc(33.33% - 20px);
-    display: none;
-}
-
-.month.visible {
-    display: block;
-    width: 350px;
-}
-
-.week-container {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    margin-top: 10px;
-}
-
-.day {
-    cursor: pointer;
-    padding: 5px;
-    border: none;
-    text-align: center;
-    margin: 2px;
-    width: calc(14.28% - 4px);
-    position: relative; 
-
-    &:hover {
-      transform: scale(1.2);
     }
-  }
 
-.button {
-    border: none;
-    margin: 16px;
-    background: none;
-}
+    &__calendar-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-.button-icon-right {
-    height:30px;
-    transition: transform 0.3s ease;
+    &__month {
+        padding: 10px;
+        text-align: center;
+        box-sizing: border-box;
+        width: calc(33.33% - 20px);
+        display: none;
 
-    &:hover {
-        transform: translateX(-5px);
-      }
-}
+        &.visible {
+            display: block;
+            width: 350px;
+        }
+    }
 
-.button-icon-left {
-    height:30px;
-    transition: transform 0.3s ease;
+    &__week-container {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        margin-top: 10px;
 
-    &:hover {
-        transform: translateX(5px);
-      }
+    }
+
+    &__day {
+        cursor: pointer;
+        padding: 5px;
+        border: none;
+        text-align: center;
+        margin: 2px;
+        width: calc(14.28% - 4px);
+        position: relative;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    &__button {
+        border: none;
+        margin: 16px;
+        background: none;
+
+        &--icon-right {
+            height: 30px;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateX(-5px);
+            }
+
+        }
+
+        &--icon-left {
+            height: 30px;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateX(5px);
+            }
+        }
+
+    }
+
 }

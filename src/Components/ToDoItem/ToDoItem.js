@@ -9,32 +9,27 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
     const [completedStatus, setCompletedStatus] = useState({});
     const timeoutRef = useRef(null);
 
-    console.log(userInputs)
 
     useEffect(() => {
+        // Initialize empty objects to store initial user inputs and completed status.
         const initialUserInputs = {};
         const initialCompletedStatus = {};
 
+        // if todo data exsits, populate initialUserInputs and initialCompletedStatus with data, using the task_id as the key
         if (todoData && todoData.length > 0) {
             todoData.forEach((todo) => {
                 initialUserInputs[todo.task_id] = todo.task;
                 initialCompletedStatus[todo.task_id] = todo.completed;
             });
         }
-
+        //update user input and todo states 
         setUserInputs(initialUserInputs);
         setCompletedStatus(initialCompletedStatus);
-
         setTodos(todoData);
-      
+
     }, [todoData]);
 
-    console.log(todoData)
-
-    useEffect(() => {
-        console.log("Mapped todos:", todos);
-    }, [todos]);
-
+    // Clear the timeout when the component mounts and unmounts.
     useEffect(() => {
         return () => {
             clearTimeout(timeoutRef.current);
@@ -43,7 +38,6 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
 
     const deleteTodo = (task_id) => {
         const token = sessionStorage.token;
-
         axios
             .delete(
                 `${baseUrl}/todo/${task_id}`,
@@ -55,18 +49,15 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
             )
             .then((response) => {
                 console.log('Todo item deleted successfully:', response.data);
-
                 // Update state after successful deletion
                 setTodos((prevTodos) =>
                     prevTodos.filter((todo) => todo.task_id !== task_id)
                 );
-
                 // Remove user input and completed status for the deleted todo
                 setUserInputs((prevUserInputs) => {
                     const { [task_id]: deletedInput, ...restInputs } = prevUserInputs;
                     return restInputs;
                 });
-
                 setCompletedStatus((prevCompletedStatus) => {
                     const { [task_id]: deletedStatus, ...restStatus } = prevCompletedStatus;
                     return restStatus;
@@ -82,26 +73,26 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
     };
 
     const handleCheckboxChange = (task_id, newCompletionStatus) => {
+        // Update the completion status in state
         setCompletedStatus((prevStatus) => ({
             ...prevStatus,
             [task_id]: newCompletionStatus,
         }));
-
+        // Clear previous timer, set new timer to delay the updateTodoItem call after 1 second of inactivity
         clearTimeout(timeoutRef.current);
-
         timeoutRef.current = setTimeout(() => {
             updateTodoItem(task_id, userInputs[task_id] || '', newCompletionStatus);
         }, 1000);
     };
 
     const handleTextChange = (task_id, newTaskValue) => {
+        // Update the user input status in state
         setUserInputs((prevUserInputs) => ({
             ...prevUserInputs,
             [task_id]: newTaskValue,
         }));
-
+        // Clear previous timer, set new timer to delay the updateTodoItem call after 1 second of inactivity
         clearTimeout(timeoutRef.current);
-
         timeoutRef.current = setTimeout(() => {
             updateTodoItem(task_id, newTaskValue, completedStatus[task_id] || '');
         }, 1000);
@@ -135,13 +126,9 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
 
     return (
         <div className="task-list__container">
-            {console.log("Before Mapping:", todos)}
             {todos && todos.length > 0 ? (
                 todos.map((todo) => (
                     <div key={todo.task_id} className="task-list__item">
-                        {/* {console.log("Priority ID:", priority.priority_id)}
-                        {console.log("Completed:", priority.completed)}
-                        {console.log("Priority:", priority.priority)} */}
                         <input
                             type="checkbox"
                             className="task-list__item--radial-toggle"

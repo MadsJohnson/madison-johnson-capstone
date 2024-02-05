@@ -15,7 +15,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          {/* <Route exact path='/mainpage' element={<PrivateRoute element={<MainPage/>}/> }/> */}
           <Route exact path='/day/:date' element={<PrivateRoute element={<DayPage/>}/> }/>
         </Routes>
       </BrowserRouter>

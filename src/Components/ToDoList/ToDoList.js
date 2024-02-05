@@ -12,11 +12,12 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
 
   const timeoutRef = useRef(null);
 
+  // show input add div on click
   const handleAddTodo = () => {
     setShowInput(true);
   };
 
-
+  //remove input add div on cancel click
   const handleClose = () => {
     setShowInput(false);
     clearTimeout(timeoutRef.current);
@@ -26,17 +27,18 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
   };
 
   const handleInputChange = (value) => {
+    //update user input state  
     setUserInput(value);
-    clearTimeout(timeoutRef.current);
 
-    // Set a new timeout to call postTodoItem after 2000 milliseconds (2 seconds)
+    // Clear timeout and set a new timeout to to delay postTodoItem by 1 second after user inactivity stops
+    clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       postTodoItem();
     }, 1000);
   };
 
 
-
+  // toggle completed status on click
   const handleToggle = () => {
     setCompleted(!completed);
   };
@@ -70,8 +72,6 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
         console.error('Error posting Todo item:', error);
       });
   };
-
-
 
 
   return (

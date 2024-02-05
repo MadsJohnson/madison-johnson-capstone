@@ -1,103 +1,100 @@
 @import '../../Styles/Partials/variables.scss';
 @import '../../Styles/Partials/mixins';
 
-.task-list__container {
-    width: 95%;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    
-}
+.task-list {
 
-.task-list__item {
-    width: 95%;
-    margin: 6px 0;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 4px 0;
-    transition: transform 0.3s ease;
+    &__container {
+        width: 95%;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
 
-    &:hover {
-        transform: translate(-2px, -2px);
-        background: linear-gradient(to left, $light-purple,$medium-purple, $medium-purple, $light-purple);
-        background-size: 200% 100%;
-        animation: shine 9s linear infinite;
-      
-        @keyframes shine {
-          to {
-            background-position: 200% 0;
-          }
-        }
-      
-        border-radius: 5px;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-      }
-
-        // &:hover {
-        //     transform: translate(-2px, -2px); 
-        // }
-
-    @include tablet {
-        padding: 10px;
     }
 
-}
-
-.task-list__item--radial-toggle {
-    @include radialToggleButtonStyles(20px, 12px, $dark-blue-fonts);
-
-}
-
-.task-list__item--input {
-    @include inputTextStyles;
-    width: 100%;
-    border: none;
-    background: none;
-    margin-left: 8px;
-
-}
-
-.task-list__item--input-container {
-    position: relative;
-    width: 85%;
-    margin-right: 8px;
-    height: 100%;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: 50%;
-        left: 0;
-        right: 0;
-        height: 50%;  
-        border-bottom: 1px solid rgba($dark-purple, 0.5);
-        transform: scaleX(0);  
+    &__item {
+        width: 95%;
+        margin: 6px 0;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 4px 0;
         transition: transform 0.3s ease;
+
+        &:hover {
+            transform: translate(-2px, -2px);
+            background: linear-gradient(to left, $light-purple, $medium-purple, $medium-purple, $light-purple);
+            background-size: 200% 100%;
+            animation: shine 9s linear infinite;
+
+            @keyframes shine {
+                to {
+                    background-position: 200% 0;
+                }
+            }
+
+            border-radius: 5px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+
+        @include tablet {
+            padding: 10px;
+        }
+
+        &--radial-toggle {
+            @include radialToggleButtonStyles(20px, 12px, $dark-blue-fonts);
+        }
+
+        &--input {
+            @include inputTextStyles;
+            width: 100%;
+            border: none;
+            background: none;
+            margin-left: 8px;
+
+        }
+
+        &--input-container {
+            position: relative;
+            width: 85%;
+            margin-right: 8px;
+            height: 100%;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 50%;
+                left: 0;
+                right: 0;
+                height: 50%;
+                border-bottom: 1px solid rgba($dark-purple, 0.5);
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+
+            &.completed::after {
+                transform: scaleX(0.95);
+                border-color: $dark-purple;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+        }
+
     }
 
-    &.completed::after {
-        transform: scaleX(0.95); 
-        border-color: $dark-purple;  
-    }
-}
-
-
-
-.task-list__item--input:focus {
-    outline: none;;
-}
-
-.task-list__button {
-    background: none;
-        // box-shadow: 4px 2px 2px rgba(128, 128, 128, 0.5);
-        border: none; 
+    &__button {
+        background: none;
+        border: none;
         cursor: pointer;
-        margin-left: 8px; 
+        margin-left: 8px;
 
-}
+    }
 
-.task-list__icon {
-    height: 12px;
+    &__icon {
+        height: 12px;
+    }
 }
