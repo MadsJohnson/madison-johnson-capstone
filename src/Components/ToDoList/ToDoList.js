@@ -1,5 +1,5 @@
 import './ToDoList.scss';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import addIcon from '../../Assets/Icons/add.svg'
 import deleteIcon from '../../Assets/Icons/delete.svg'
@@ -79,7 +79,7 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
       <div className='task-list__title-container'>
         <h2 className="task-list__title">To Do</h2>
         <button className="task-list__button" onClick={handleAddTodo}>
-          <img className="task-list__icon" src={addIcon} />
+          <img alt="add icon" className="task-list__icon" src={addIcon} />
         </button>
       </div>
       <div className='task-list__container'>
@@ -88,7 +88,7 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
             <input
               type="checkbox"
               className="task-list__item--radial-toggle"
-              onClick={handleToggle}
+              onChange={handleToggle}
               checked={completed}
             />
             <div className="task-list__item--input-container">
@@ -98,7 +98,7 @@ const ToDoList = ({ fetchToDoData, todoData, baseUrl, date }) => {
               />
             </div>
             <button className="task-list__button" onClick={handleClose}>
-              <img className="task-list__icon" src={deleteIcon} />
+              <img alt="delete icon" className="task-list__icon" src={deleteIcon} />
             </button>
           </div>
         )}

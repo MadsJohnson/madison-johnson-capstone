@@ -49,7 +49,6 @@ const YearNav = ({ setShowYearNav, date }) => {
     const dates = generateDates();
 
     const handleDateClick = (date) => {
-        const formattedDate = new Date(date).toISOString().split('T')[0];
         navigate(`/day/${date}`);
 
         setShowYearNav(false);
@@ -60,11 +59,11 @@ const YearNav = ({ setShowYearNav, date }) => {
         <div className="year-at-a-glance">
             <div className="month-navigation">
                 <button className="button" onClick={handlePrevMonth}>
-                    <img className='button-icon-right' src={backArrow}/>
+                    <img alt="back arrow icon" className='button-icon-right' src={backArrow}/>
                 </button>
                 <h3>{monthNames[selectedMonth - 1]}</h3>
                 <button className="button" onClick={handleNextMonth}>
-                    <img  className='button-icon-left' src={forwardArrow}/>
+                    <img alt="forward arrow icon" className='button-icon-left' src={forwardArrow}/>
                 </button>
             </div>
             <div className="calendar-grid">

@@ -28,7 +28,7 @@ const MainNav = () => {
         <>
             <div className='main-nav'>
                 <button className='main-nav__icon-button' onClick={handleToggleYearNav}>
-                    <img src={calendar} className='main-nav__icon' />
+                    <img alt="calendar icon button" src={calendar} className='main-nav__icon' />
                 </button>
                 <button className='main-nav__button' onClick={goToToday}>Go to today</button>
                 <button className='main-nav__button' onClick={handleLogout}>Logout</button>

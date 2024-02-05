@@ -157,7 +157,7 @@ const ToDoItem = ({ fetchToDoData, todoData, baseUrl, date }) => {
                             />
                         </div>
                         <button onClick={() => handleDelete(todo.task_id)} className="task-list__button">
-                            <img className="task-list__icon" src={deleteIcon} />
+                            <img alt="delete icon" className="task-list__icon" src={deleteIcon} />
                         </button>
                     </div>
                 ))
