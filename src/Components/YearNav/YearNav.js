@@ -36,7 +36,7 @@ const YearNav = ({ setShowYearNav, date }) => {
                 </button>
                 <h3>{monthNames[selectedMonth - 1]}</h3>
                 <button className="year-at-a-glance__button" onClick={handleNextMonth}>
-                    <img  className='year-at-a-glance__button--icon-left' src={forwardArrow}/>
+                    <img  className='year-at-a-glance__button--icon-left' src={forwardArrow}/
                 </button>
             </div>
             <div className="year-at-a-glance__calendar-grid">
