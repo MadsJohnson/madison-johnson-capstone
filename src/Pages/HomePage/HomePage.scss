@@ -1,0 +1,47 @@
+@import '../../Styles/Partials/mixins';
+@import '../../Styles/Partials/variables';
+
+body video {
+  object-fit: fill;
+  height: 1400px;
+  object-position: center;
+}
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the content vertically */
+  position: relative;
+
+  &__video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send the video background to the back */
+    background: url('../../Assets/Videos/background-galaxy.mp4') no-repeat center center fixed; 
+
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); // Adjust the alpha value for transparency
+        z-index: 1; // Ensure the overlay is above the video
+      }
+
+    &__video {
+      width: 100%  !important;
+      height: 100%  !important;
+      object-fit: fill !important;
+    }
+  }
+
+  &__login {
+    /* You can adjust the width as needed */
+    width: 60%; 
+  }
+}

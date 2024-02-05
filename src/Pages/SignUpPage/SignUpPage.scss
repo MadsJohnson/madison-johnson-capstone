@@ -1,0 +1,39 @@
+@import '../../Styles/Partials/mixins';
+@import '../../Styles/Partials/variables';
+
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center the content vertically */
+
+  &__video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send the video background to the back */
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8); // Adjust the alpha value for transparency
+        z-index: 1; // Ensure the overlay is above the video
+      }
+
+    &__video { 
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  }
+
+  &__login {
+    /* You can adjust the width as needed */
+    width: 60%; 
+  }
+}

@@ -1,0 +1,126 @@
+@import '../../Styles/Partials/mixins';
+@import'../../Styles/Partials/variables';
+
+
+.signupPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:  500px;
+    margin: 50px;
+    background-color: rgba($light-purple,0.6);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 10px rgba(black, 0.9);
+    width: 300px;
+    color: $dark-purple;
+
+    @include tablet {
+        height: 500px;
+        width: 300px;
+    }
+
+    @include desktop {
+        align-self: right;
+    }
+
+    &__title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: $dark-purple;
+    }
+
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__form-group {
+        margin-bottom: 9px;
+        width: 100%;
+
+        &--subtitle {
+            display: none;
+           
+        }
+
+        &--input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+            &:hover {
+                transform: translate(-2px, -2px);
+                background: linear-gradient(to left, $light-purple,$medium-purple, $medium-purple, $light-purple);
+                background-size: 200% 100%;
+                animation: shine 6s linear infinite;
+              
+                @keyframes shine {
+                  to {
+                    background-position: 200% 0;
+                  }
+                }
+              
+                border-radius: 5px;
+                box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+              }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+    }
+
+
+    &__copy {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    &__signup {
+        width: 100%;
+    }
+
+
+    &__button {
+        background-color: #dbe1f4;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        height: 35px;
+        margin: 20px  0;
+        box-shadow: 0 6px 8px rgba(black, 0.3);
+        border: none;
+
+        &:hover {
+            transform: translate(-2px, -2px);
+            background: linear-gradient(to left, $light-purple,$medium-purple, $medium-purple, $light-purple);
+            background-size: 200% 100%;
+            animation: shine 6s linear infinite;
+          
+            @keyframes shine {
+              to {
+                background-position: 200% 0;
+              }
+            }
+          
+            border-radius: 5px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+          }
+    }
+
+}

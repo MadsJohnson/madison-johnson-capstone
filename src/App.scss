@@ -1,3 +1,8 @@
-.App {
-  text-align: center;
+@import './Styles/Partials/variables';
+
+body {
+    align-items: center;
+    background-color: #1a1c24;
+    // background: linear-gradient(to right, #0d0f17, #202133, #0d0f17);
+    
 }
